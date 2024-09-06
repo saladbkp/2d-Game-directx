@@ -1,0 +1,180 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\TrexRunner\\Systems\\Time.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\SplashScreen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\SplashScreen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\MainMenu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\MainMenu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\MainMenu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\MainMenu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\audioManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\audioManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\audioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\audioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\FrameTimer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\FrameTimer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\FrameTimer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\FrameTimer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\SplashScreen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\SplashScreen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\main.cpp",
+              "RelativeDocumentMoniker": "week9\\main.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\main.cpp",
+              "RelativeToolTip": "week9\\main.cpp",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAGcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-05T05:48:23.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Time.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\TrexRunner\\Systems\\Time.cpp",
+              "RelativeDocumentMoniker": "..\\TrexRunner\\Systems\\Time.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\TrexRunner\\Systems\\Time.cpp*",
+              "RelativeToolTip": "..\\TrexRunner\\Systems\\Time.cpp*",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-06T00:37:15.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainMenu.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\MainMenu.cpp",
+              "RelativeDocumentMoniker": "week9\\MainMenu.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\MainMenu.cpp",
+              "RelativeToolTip": "week9\\MainMenu.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-05T05:54:56.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainMenu.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\MainMenu.h",
+              "RelativeDocumentMoniker": "week9\\MainMenu.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\MainMenu.h",
+              "RelativeToolTip": "week9\\MainMenu.h",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-05T05:55:12.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SplashScreen.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\SplashScreen.h",
+              "RelativeDocumentMoniker": "week9\\SplashScreen.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\SplashScreen.h",
+              "RelativeToolTip": "week9\\SplashScreen.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-05T05:47:28.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "audioManager.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\audioManager.h",
+              "RelativeDocumentMoniker": "week9\\audioManager.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\audioManager.h",
+              "RelativeToolTip": "week9\\audioManager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-05T07:58:48.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "audioManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\audioManager.cpp",
+              "RelativeDocumentMoniker": "week9\\audioManager.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\audioManager.cpp",
+              "RelativeToolTip": "week9\\audioManager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-05T07:59:44.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FrameTimer.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\FrameTimer.cpp",
+              "RelativeDocumentMoniker": "week9\\FrameTimer.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\FrameTimer.cpp",
+              "RelativeToolTip": "week9\\FrameTimer.cpp",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-05T05:51:53.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SplashScreen.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\SplashScreen.cpp",
+              "RelativeDocumentMoniker": "week9\\SplashScreen.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\SplashScreen.cpp",
+              "RelativeToolTip": "week9\\SplashScreen.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-05T05:47:55.746Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FrameTimer.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\FrameTimer.h",
+              "RelativeDocumentMoniker": "week9\\FrameTimer.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\week9 - Copy\\week9\\FrameTimer.h",
+              "RelativeToolTip": "week9\\FrameTimer.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-05T05:51:52.603Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
