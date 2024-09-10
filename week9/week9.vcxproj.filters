@@ -19,6 +19,30 @@
     <ClCompile Include="audioManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomShapes.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Paddle.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="key.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -29,6 +53,12 @@
     </Filter>
     <Filter Include="Source">
       <UniqueIdentifier>{245c904a-7ae0-4242-a847-777bc36602ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{94377176-0e73-4290-8719-225887d9fd80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{6cd2fecc-6cfb-4e56-bb19-9024ded37ea8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +73,30 @@
     </ClInclude>
     <ClInclude Include="audioManager.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomShapes.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Paddle.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="key.h">
+      <Filter>GameLogic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

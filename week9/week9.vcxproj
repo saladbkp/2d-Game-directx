@@ -134,16 +134,32 @@ dxguid.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="audioManager.cpp" />
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="CustomShapes.cpp" />
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="key.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audioManager.h" />
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="CustomShapes.h" />
     <ClInclude Include="FrameTimer.h" />
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="key.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="Paddle.h" />
+    <ClInclude Include="Polygon.h" />
     <ClInclude Include="SplashScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
