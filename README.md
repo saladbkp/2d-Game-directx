@@ -20,4 +20,4 @@ A simple 2D game built using DirectX 9, featuring polygon character movement and
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/directx-2d-polygon-game.git
+   [git clone https://github.com/your-username/directx-2d-polygon-game.git](https://github.com/saladbkp/2d-Game-directx.git)
