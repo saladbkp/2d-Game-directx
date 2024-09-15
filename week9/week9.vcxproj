@@ -135,12 +135,13 @@ dxguid.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
   <ItemGroup>
     <ClCompile Include="audioManager.cpp" />
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="background.cpp" />
+    <ClCompile Include="Cactus.cpp" />
     <ClCompile Include="CustomShapes.cpp" />
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="key.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Obstacle.cpp" />
@@ -150,12 +151,13 @@ dxguid.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audioManager.h" />
+    <ClInclude Include="background.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Cactus.h" />
     <ClInclude Include="CustomShapes.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="key.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Paddle.h" />

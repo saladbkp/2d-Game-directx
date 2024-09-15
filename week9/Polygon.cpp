@@ -114,6 +114,27 @@ void UpdatePolygon() {
     //if (GetKeyboardPress(DIK_D)) g_aPolygon.pos.x += move_Polygon; // Move right
 
     //if (GetAsyncKeyState(0x57) & 0x8000) g_aPolygon.pos.y -= move_Polygon; // Move up
+    if ((GetAsyncKeyState(0x53) & 0x8000) || (GetAsyncKeyState(0x41) & 0x8000 || GetAsyncKeyState(0x44) & 0x8000 || GetAsyncKeyState(0x57) & 0x8000) ){
+        g_nCounterAnim_Polygon++;
+        if (g_nCounterAnim_Polygon == runSpeed_Polygon)
+        {
+            g_nCounterAnim_Polygon = 0;
+            g_nPatternAnim_Polygon++;
+            if (g_nPatternAnim_Polygon == animMaxnum_Polygon)
+            {
+                startAnimY_Polygon = 0;
+                animRow_Polygon = 1;
+                g_nPatternAnim_Polygon = 0;
+            }
+            else if (g_nPatternAnim_Polygon == 5)
+            {
+                animRow_Polygon++;
+                startAnimY_Polygon += (1.0f / maxAnimY_Polygon);
+            }
+
+        }
+    }
+    
     if (GetAsyncKeyState(0x53) & 0x8000) g_aPolygon.pos.y += move_Polygon; // Move down
     if (GetAsyncKeyState(0x41) & 0x8000) g_aPolygon.pos.x -= move_Polygon; // Move left
     if (GetAsyncKeyState(0x44) & 0x8000) g_aPolygon.pos.x += move_Polygon; // Move right

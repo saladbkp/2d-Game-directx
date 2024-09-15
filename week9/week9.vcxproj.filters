@@ -40,8 +40,11 @@
     <ClCompile Include="Input.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
-    <ClCompile Include="key.cpp">
+    <ClCompile Include="Cactus.cpp">
       <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="background.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +98,11 @@
     <ClInclude Include="Input.h">
       <Filter>Helper</Filter>
     </ClInclude>
-    <ClInclude Include="key.h">
+    <ClInclude Include="Cactus.h">
       <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

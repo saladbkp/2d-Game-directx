@@ -11,10 +11,12 @@
 #include <random>
 #include "Paddle.h"
 #include "Polygon.h"
+#include "Cactus.h"
 #include <dinput.h>
 #include "Input.h"
 #include "FrameTimer.h"
 #include <string>
+#include "background.h"
 
 
 // Global Direct3D variables
@@ -53,8 +55,12 @@ Graphics gfx;  // Graphics object to use in CustomShapes
 // setup components
 Ball b;
 Ball b2(400, 400, 10);
+
+Ball b3;
 const int num_obstacles = 8;
 Obstacle* o = new Obstacle[num_obstacles];
+Obstacle* o2 = new Obstacle[num_obstacles];
+
 int maxObjectHeight = 100;
 int obstacle_x_spacing = 50;
 int obstacle_x_size = 5;
@@ -63,6 +69,9 @@ Paddle p;
 
 // SETUP POLYGON
 POLYGON* player;
+
+// setup cactus
+CACTUS* cactus;
 
 std::random_device rd;
 std::mt19937 rng(rd());
@@ -82,6 +91,16 @@ int score = 0;
 int highscore = 0;
 int chance = 3;
 LPD3DXFONT g_pFontScore = nullptr;
+
+// Code used to set the randomise seeds
+std::uniform_int_distribution<int> _y(10, gfx.ScreenHeight - 10 - maxObjectHeight);
+std::uniform_int_distribution<int> _xsize(50, 200);
+std::uniform_int_distribution<int> _x(10, gfx.ScreenWidth - 10 - 200);
+std::uniform_int_distribution<int> _vy(-3, 3);
+std::uniform_int_distribution<int> _ysize(30, maxObjectHeight - 30);
+
+// background
+ScrollingBackground* bg = nullptr;
 
 
 // helper function
@@ -122,6 +141,7 @@ void InitD3D(HWND hWnd) {
 
     d3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
         D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &d3ddev);
+    
 
     // init fps
     D3DXFONT_DESC fontDesc = {
@@ -160,6 +180,12 @@ void InitD3D(HWND hWnd) {
         return;
     }
 
+    // draw bg
+    bg = new ScrollingBackground(d3ddev);
+    bg->Init(d3ddev, ".\\Assets\\bglong.jpg",800,600);
+
+
+    // fps
     g_frameTimer.init(6000); // 60 FPS
 
     // Initialize screens
@@ -173,10 +199,7 @@ void InitD3D(HWND hWnd) {
     p.speed = 3;
     p.size = 50;
     // 
-    // Code used to set the randomise seeds
-    std::uniform_int_distribution<int> _y(10, gfx.ScreenHeight - 10 - maxObjectHeight);
-    std::uniform_int_distribution<int> _vy(-3, 3);
-    std::uniform_int_distribution<int> _ysize(30, maxObjectHeight - 30);
+
 
     for (int i = 0; i < num_obstacles; i++)
     {
@@ -193,11 +216,21 @@ void InitD3D(HWND hWnd) {
     }
     b.resetBall(gfx.ScreenWidth - 100, gfx.ScreenHeight / 2, 20);
     b2.resetBall(b2.x, b2.y);
-
+    
+    b3.resetBall(_x(rng), gfx.ScreenHeight, _xsize(rng));
+    
     // Initialize the polygon here
     InitPolygon(d3ddev);
     player = GetPolygon();  // Fetch polygon instance if needed
+
+    // init cactus
+    InitCactus(d3ddev);
+    cactus = GetCactus();
+
+    
+
 }
+
 
 // render fps
 // Render FPS on the screen
@@ -327,6 +360,17 @@ bool obstacleHity(int i)
     }
 }
 
+void pauseMode() {
+    b.vx = -NORMAL_SPEED_X; // Reset to normal speed
+    b.vy = NORMAL_SPEED_Y; // Reset to normal speed
+    b.resetBall(gfx.ScreenWidth - 100, gfx.ScreenHeight / 2);
+    score = 0;
+    chance -= 1;
+    if (chance == 0) {
+        gameState = GAMEOVER;
+    }
+}
+
 bool paddleHit()
 {
     return (b.vx > 0 &&
@@ -336,7 +380,9 @@ bool paddleHit()
         b.y + b.diameter / 2 > p.y - p.size / 2);
 }
 
+
 void UpdateModel() {
+
     if (GetAsyncKeyState(VK_UP) & 0x8000) {
 
         p.y -= p.speed;
@@ -355,10 +401,15 @@ void UpdateModel() {
             b.vy = NORMAL_SPEED_Y;
             b.inMotion = true;
         }
+        if (!cactus->bActive) {
+            cactus->bActive = true;
+        }
+        if (!b3.inMotion) {
+            b3.vx = -NORMAL_SPEED_X;
+            b3.vy = NORMAL_SPEED_Y;
+            b3.inMotion = true;
+        }
     }
-
-    // Apply gravity to ball
-    //b.vy += GRAVITY * g_frameTimer.deltaTime;
 
     if (b.y > (gfx.ScreenHeight - 10) - (b.diameter / 2) - abs(b.vy))
     {
@@ -372,14 +423,7 @@ void UpdateModel() {
 
     if (b.x > (gfx.ScreenWidth - 10) - (b.diameter / 2) - abs(b.vx))
     {
-        b.vx = -NORMAL_SPEED_X; // Reset to normal speed
-        b.vy = NORMAL_SPEED_Y; // Reset to normal speed
-        b.resetBall(gfx.ScreenWidth - 100, gfx.ScreenHeight / 2);
-        score = 0;
-        chance -= 1;
-        if (chance == 0) {
-            gameState = GAMEOVER;
-        }
+        pauseMode();
         
     }
 
@@ -387,6 +431,7 @@ void UpdateModel() {
     {
         b.vx = -b.vx;
     }
+         
 
     // for paddles
     if (p.y < 10 + (p.size / 2))
@@ -411,6 +456,12 @@ void UpdateModel() {
         {
             o[i].vy = -o[i].vy;
         }
+    }
+
+    if (b3.y > gfx.ScreenHeight - 10 - b3.diameter)
+    {
+        b3.resetBall(_x(rng), 10, _xsize(rng));
+        b3.inMotion = true;
     }
 
     for (int i = 0; i < num_obstacles; i++) {
@@ -459,6 +510,26 @@ void UpdateModel() {
 
     // Update polygon state in the game loop
     UpdatePolygon();
+
+    UpdateCactus();
+
+    b3.update(g_frameTimer.deltaTime);
+    
+    //b3.update(g_frameTimer.deltaTime);
+    //generateBall();
+    bool ball_hit = b3.checkCollision(player->pos, 60, 60);
+    bool cactus_hit = CheckCollisionWithPlayer(player->pos, 60, 60);
+    if (cactus_hit || ball_hit) {
+        if (b3.inMotion && cactus->bActive) {
+            pauseMode();
+            b3.inMotion = false;
+            b3.resetBall(_x(rng), gfx.ScreenHeight, _xsize(rng));
+
+            cactus->bActive = false;
+            cactus->pos = D3DXVECTOR3(SCREEN_WIDTH + cactus->fWidth / 2, SCREEN_HEIGHT - cactus->fHeight / 2, 0.0f);
+        }
+        
+    }
 }
 
 void ComposeFrame() {
@@ -470,8 +541,14 @@ void ComposeFrame() {
         o[i].drawObstacle(gfx, o[i].x, o[i].y);
     }
 
+    // gravity drop
+    b3.drawBall(gfx, b3.x - 200, b3.y, b3.diameter / 2, true);
+
     // Draw the polygon during frame composition
     DrawPolygon(d3ddev);
+
+    // Draw cactus
+    DrawCactus(d3ddev);
 }
 
 void RenderFrame() {
@@ -507,9 +584,18 @@ void RenderFrame() {
 
         // Check if buttons are clicked
         if (mainMenu.IsStartClicked()) {
+            
+            
+            
             gameState = GAME;  // Proceed to the game
             if (isClick) {
                 gameState = GAME;
+
+                
+
+                // End the scene
+                // d3ddev->EndScene();
+
             }
         }
         if (mainMenu.IsExitClicked()) {
@@ -517,11 +603,22 @@ void RenderFrame() {
         }
     }
     else if (gameState == GAME) {
+        //// Update the background scroll offsets based on input
+        //bg->Update(1,1);
+
+        //// Render the scrolling background
+        //bg->Render(d3ddev);
+
         UpdateModel();
         ComposeFrame();
     }
     else if (gameState == GAMEOVER) {
         gameOverScreen.Render(d3ddev);
+        if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+            gameState = GAME;
+            score = 0;
+            chance = 3;
+        }
     }
     
     d3ddev->EndScene();
@@ -537,6 +634,12 @@ void Cleanup() {
     d3d->Release();
     g_pFont->Release();
     g_pFontScore->Release();
+    
+    if (bg) {
+        delete bg;
+        bg = nullptr;
+    }
+
     UninitPolygon();
 }
 
