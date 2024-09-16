@@ -5,12 +5,12 @@ MainMenu::MainMenu() : startClicked(false), exitClicked(false), startButtonTextu
 
 void MainMenu::Init(LPDIRECT3DDEVICE9 d3ddev) {
     // Load textures for background, start, and exit buttons
-    D3DXCreateTextureFromFile(d3ddev, "Assets\\bg.png", &bgTexture);
-    D3DXCreateTextureFromFile(d3ddev, "Assets\\startOver.png", &startButtonTexture);
+    D3DXCreateTextureFromFile(d3ddev, "Assets\\bg1.png", &bgTexture);
+    D3DXCreateTextureFromFile(d3ddev, "Assets\\start-icon.png", &startButtonTexture);
     D3DXCreateTextureFromFile(d3ddev, "Assets\\quitOver.png", &exitButtonTexture);
 
     // Adjust button positions and sizes
-    startButtonRect = { 250, 300, 450, 350 };  // Start button (lower position, smaller height)
+    startButtonRect = { 250, 150, 450, 350 };  // Start button (lower position, smaller height)
     exitButtonRect = { 250, 380, 450, 430 };   // Exit button (closer to the start button)
 
     // Set up text rectangle (position)
@@ -20,10 +20,10 @@ void MainMenu::Init(LPDIRECT3DDEVICE9 d3ddev) {
     D3DXCreateFont(d3ddev, 40, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Arial"), &font);
 
     // Initialize audio manager
-    if (audioManager.Init(GetForegroundWindow())) {
+    /*if (audioManager.Init(GetForegroundWindow())) {
         audioManager.LoadWaveFile("Assets\\bg.wav");
         audioManager.PlayBackgroundMusic();
-    }
+    }*/
 }
 
 void MainMenu::Render(LPDIRECT3DDEVICE9 d3ddev) {
@@ -50,8 +50,8 @@ void MainMenu::Render(LPDIRECT3DDEVICE9 d3ddev) {
     sprite->End();
 
     // Render the menu text
-    RECT textRect = menuTextRect;
-    font->DrawText(nullptr, TEXT("Main Menu"), -1, &textRect, DT_CENTER | DT_VCENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
+    /*RECT textRect = menuTextRect;
+    font->DrawText(nullptr, TEXT("Main Menu"), -1, &textRect, DT_CENTER | DT_VCENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));*/
 
     // Release the sprite
     sprite->Release();

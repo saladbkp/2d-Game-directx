@@ -1,22 +1,31 @@
 #ifndef AUDIOMANAGER_H
 #define AUDIOMANAGER_H
 
-#include <dsound.h>
+#include "fmod.hpp"
+#include <string>
+#include <map>
 
 class AudioManager {
 public:
+    FMOD::System* system; // Virtual Soundcard
+    std::map<std::string, FMOD::Sound*> sounds; // Store multiple sound files
+    FMOD::Sound* sound;
+    FMOD::Channel* channel = 0; // Channel where a sound will be assigned to
+    FMOD_RESULT result; // Error code
+    void* extradriverdate = 0; // Unnecessary
+
     AudioManager();
     ~AudioManager();
 
-    bool Init(HWND hwnd);
-    bool LoadWaveFile(LPCSTR filename);
-    void PlayBackgroundMusic();
+    void InitializeAudio();
+    void LoadSound();
+    void PlaySound1(std::string soundName, float frequency);
+    void PlaySoundTrack();
+    void SetVolume(std::string soundName);
     void Cleanup();
 
 private:
-    LPDIRECTSOUND8 directSound;
-    LPDIRECTSOUNDBUFFER primaryBuffer;
-    LPDIRECTSOUNDBUFFER secondaryBuffer;
 };
 
 #endif
+

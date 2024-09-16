@@ -46,6 +46,9 @@
     <ClCompile Include="background.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -104,5 +107,16 @@
     <ClInclude Include="background.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fmod.dll">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="fmodL.dll">
+      <Filter>Source</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -17,6 +17,7 @@
 #include "FrameTimer.h"
 #include <string>
 #include "background.h"
+#include "Leaf.h"
 
 
 // Global Direct3D variables
@@ -56,7 +57,7 @@ Graphics gfx;  // Graphics object to use in CustomShapes
 Ball b;
 Ball b2(400, 400, 10);
 
-Ball b3;
+LEAF*  leaf;
 const int num_obstacles = 8;
 Obstacle* o = new Obstacle[num_obstacles];
 Obstacle* o2 = new Obstacle[num_obstacles];
@@ -102,6 +103,14 @@ std::uniform_int_distribution<int> _ysize(30, maxObjectHeight - 30);
 // background
 ScrollingBackground* bg = nullptr;
 
+LPDIRECT3DTEXTURE9 pauseTexture = nullptr; // Global or class member variable
+LPD3DXSPRITE spritepauseHandler = nullptr;
+
+//Initialize sound
+AudioManager* audioManager = new AudioManager();
+bool isBounced = false;
+float ballSpeed;
+float frequency;
 
 // helper function
 // Custom max function
@@ -182,7 +191,7 @@ void InitD3D(HWND hWnd) {
 
     // draw bg
     bg = new ScrollingBackground(d3ddev);
-    bg->Init(d3ddev, ".\\Assets\\bglong.jpg",800,600);
+    bg->Init(d3ddev, ".\\Assets\\bgBamboo_01.png", ".\\Assets\\bgBamboo_02.png", ".\\Assets\\bgBamboo_03.png",800,600);
 
 
     // fps
@@ -217,8 +226,10 @@ void InitD3D(HWND hWnd) {
     b.resetBall(gfx.ScreenWidth - 100, gfx.ScreenHeight / 2, 20);
     b2.resetBall(b2.x, b2.y);
     
-    b3.resetBall(_x(rng), gfx.ScreenHeight, _xsize(rng));
-    
+    //b3.resetLeaf(_x(rng), gfx.ScreenHeight, _xsize(rng));
+    InitLeaf(d3ddev);
+    leaf = GetLeaf();
+
     // Initialize the polygon here
     InitPolygon(d3ddev);
     player = GetPolygon();  // Fetch polygon instance if needed
@@ -227,10 +238,29 @@ void InitD3D(HWND hWnd) {
     InitCactus(d3ddev);
     cactus = GetCactus();
 
-    
+    // init puase
+    HRESULT hr = D3DXCreateTextureFromFile(d3ddev, "Assets\\pause.png", &pauseTexture);
+    if (FAILED(hr)) {
+        // Handle error
+        MessageBox(NULL, "Could not load pause.png", "Error", MB_OK);
+    }
+    D3DXCreateSprite(d3ddev, &spritepauseHandler);
+
+    // Initialize audio manager
+    audioManager->InitializeAudio();
+    audioManager->LoadSound();
+    audioManager->PlaySoundTrack();
 
 }
 
+void Sound() {
+    if (isBounced) {
+        ballSpeed = b.vx * b.vx + b.vy * b.vy;
+        frequency = 50000 + (ballSpeed * ballSpeed / 2);
+        audioManager->PlaySound1("Bounce sound 2", frequency);
+        isBounced = false;
+    }
+}
 
 // render fps
 // Render FPS on the screen
@@ -278,9 +308,9 @@ void RenderScore() {
         // Set the position and rectangle for the text
         //RECT textRect;
         //SetRect(&textRect, 800 - 100, 700 - 30, 800, 700); // Example position
-        RECT roundRect = { 600, 50, 800, 600 };
-        RECT textRect = { 600, 500, 800, 600 };
-        RECT textRect2 = { 600, 550, 800, 600 };
+        RECT roundRect = { 700, 10, 800, 600 };
+        RECT textRect = { 700, 610, 800, 600 };
+        RECT textRect2 = { 50, 610, 800, 600 };
         // Draw the text
         g_pFont->DrawText(NULL, roundText, -1, &roundRect, DT_LEFT | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
         g_pFont->DrawText(NULL, scoreText, -1, &textRect, DT_LEFT | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
@@ -369,6 +399,51 @@ void pauseMode() {
     if (chance == 0) {
         gameState = GAMEOVER;
     }
+    bool isPaused = true;  // Set the initial state to paused
+
+    while (isPaused)
+    {
+        // Clear the screen (optional, you might want to retain the game background)
+        d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
+
+        // Begin the scene (ensure you're working within the rendering loop)
+        d3ddev->BeginScene();
+
+        // Begin the sprite drawing process
+        spritepauseHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
+        // Get the width and height of the texture (pause.png)
+        D3DSURFACE_DESC desc;
+        pauseTexture->GetLevelDesc(0, &desc);
+        int imageWidth = desc.Width;
+        int imageHeight = desc.Height;
+
+        // Calculate the position to center the image
+        //int posX = (screenWidth / 2) - (imageWidth / 2);
+        //int posY = (screenHeight / 2) - (imageHeight / 2);
+
+        // Set the position to draw the texture at the center of the screen
+        D3DXVECTOR3 position(100, 100, 0.0f);
+
+        // Draw the texture (pause.png)
+        spritepauseHandler->Draw(pauseTexture, NULL, NULL, &position, D3DCOLOR_XRGB(255, 255, 255));
+
+        // End the sprite drawing process
+        spritepauseHandler->End();
+
+        // End the scene rendering
+        d3ddev->EndScene();
+
+        // Present the back buffer to the display
+        d3ddev->Present(NULL, NULL, NULL, NULL);
+
+        // Check if the user presses the Enter key to resume the game
+        if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+        {
+            isPaused = false;  // Exit the loop and resume the game
+        }
+    }
+
 }
 
 bool paddleHit()
@@ -404,10 +479,8 @@ void UpdateModel() {
         if (!cactus->bActive) {
             cactus->bActive = true;
         }
-        if (!b3.inMotion) {
-            b3.vx = -NORMAL_SPEED_X;
-            b3.vy = NORMAL_SPEED_Y;
-            b3.inMotion = true;
+        if (!leaf->bActive) {
+            leaf->bActive = true;
         }
     }
 
@@ -458,11 +531,11 @@ void UpdateModel() {
         }
     }
 
-    if (b3.y > gfx.ScreenHeight - 10 - b3.diameter)
+    /*if (b3.y > gfx.ScreenHeight - 10 - b3.diameter)
     {
-        b3.resetBall(_x(rng), 10, _xsize(rng));
+        b3.resetLeaf(_x(rng), 10, _xsize(rng));
         b3.inMotion = true;
-    }
+    }*/
 
     for (int i = 0; i < num_obstacles; i++) {
         if (obstacleHitx(i) || obstacleHity(i)) {
@@ -472,6 +545,9 @@ void UpdateModel() {
             // Increase speed on collision
             b.vx += (b.vx > 0) ? SPEED_INCREMENT : -SPEED_INCREMENT;
             b.vy += (b.vy > 0) ? SPEED_INCREMENT : -SPEED_INCREMENT;
+
+            // Play sound effect
+            isBounced = true;
         }
     }
 
@@ -496,6 +572,9 @@ void UpdateModel() {
         if (b.diameter > 10) {
             b.diameter -= 1;
         }
+
+        // Play sound effect
+        isBounced = true;
     }
     
     b.x += b.vx;
@@ -509,21 +588,30 @@ void UpdateModel() {
     }
 
     // Update polygon state in the game loop
+    UpdateLeaf();
+
     UpdatePolygon();
 
     UpdateCactus();
 
-    b3.update(g_frameTimer.deltaTime);
+    //b3.update(g_frameTimer.deltaTime);
     
     //b3.update(g_frameTimer.deltaTime);
     //generateBall();
-    bool ball_hit = b3.checkCollision(player->pos, 60, 60);
+    bool ball_hit = CheckCollisionWithPlayerLeaf(player->pos, 60, 60);
+    if (ball_hit) {
+        if (leaf->bActive) {
+            score += 10;
+            leaf->bActive = false;
+
+        }
+
+    }
+
     bool cactus_hit = CheckCollisionWithPlayer(player->pos, 60, 60);
-    if (cactus_hit || ball_hit) {
-        if (b3.inMotion && cactus->bActive) {
+    if (cactus_hit) {
+        if (cactus->bActive) {
             pauseMode();
-            b3.inMotion = false;
-            b3.resetBall(_x(rng), gfx.ScreenHeight, _xsize(rng));
 
             cactus->bActive = false;
             cactus->pos = D3DXVECTOR3(SCREEN_WIDTH + cactus->fWidth / 2, SCREEN_HEIGHT - cactus->fHeight / 2, 0.0f);
@@ -542,7 +630,7 @@ void ComposeFrame() {
     }
 
     // gravity drop
-    b3.drawBall(gfx, b3.x - 200, b3.y, b3.diameter / 2, true);
+    DrawLeaf(d3ddev);
 
     // Draw the polygon during frame composition
     DrawPolygon(d3ddev);
@@ -552,7 +640,7 @@ void ComposeFrame() {
 }
 
 void RenderFrame() {
-    d3ddev->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_XRGB(93, 107, 153), 1.0f, 0);
+    d3ddev->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
     d3ddev->BeginScene();
 
     // render here
@@ -604,10 +692,10 @@ void RenderFrame() {
     }
     else if (gameState == GAME) {
         //// Update the background scroll offsets based on input
-        //bg->Update(1,1);
+        HandlePlayerMovement(*bg);
 
         //// Render the scrolling background
-        //bg->Render(d3ddev);
+        bg->Render(d3ddev);
 
         UpdateModel();
         ComposeFrame();
@@ -672,6 +760,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         else {
             
             RenderFrame();
+            Sound();
         }
     }
 

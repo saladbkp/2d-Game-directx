@@ -41,12 +41,18 @@ void CustomShapes::drawCourt(Graphics& gr)
     int screenWidth = gr.ScreenWidth;
     int screenHeight = gr.ScreenHeight;
 
-    // Top border
-    drawLine(gr, 10, 10, screenWidth - 10, 10, 255, 255, 255);
-    // Left border
-    drawLine(gr, 10, 10, 10, screenHeight - 10, 255, 255, 255);
-    // Bottom border
-    drawLine(gr, 10, screenHeight - 10, screenWidth - 10, screenHeight - 10, 255, 255, 255);
-    // Right border
-    drawLine(gr, screenWidth - 10, 10, screenWidth - 10, screenHeight - 10, 255, 255, 255);
+    int topBorderMargin = 30;      // Top border margin
+    int rightBorderMargin = 70;    // Right border margin (decreased)
+    int extendedLineOffset = 80;   // Extend the top and bottom lines by 20 pixels on both sides
+
+    // Top border (extended by 20 pixels on both sides)
+    drawLine(gr, 10 - extendedLineOffset, topBorderMargin, screenWidth - 10 + extendedLineOffset, topBorderMargin, 255, 255, 255);
+    // Left border (remains the same)
+    drawLine(gr, 10, topBorderMargin, 10, screenHeight - 10, 255, 255, 255);
+    // Bottom border (extended by 20 pixels on both sides)
+    drawLine(gr, 10 - extendedLineOffset, screenHeight - 10, screenWidth - 10 + extendedLineOffset, screenHeight - 10, 255, 255, 255);
+    // Right border (moved left by 50 pixels)
+    drawLine(gr, screenWidth + rightBorderMargin, topBorderMargin, screenWidth + rightBorderMargin, screenHeight - 10, 255, 255, 255);
 }
+
+
