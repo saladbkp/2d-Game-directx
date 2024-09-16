@@ -7,14 +7,14 @@ void MainMenu::Init(LPDIRECT3DDEVICE9 d3ddev) {
     // Load textures for background, start, and exit buttons
     D3DXCreateTextureFromFile(d3ddev, "Assets\\bg1.png", &bgTexture);
     D3DXCreateTextureFromFile(d3ddev, "Assets\\start-icon.png", &startButtonTexture);
-    D3DXCreateTextureFromFile(d3ddev, "Assets\\quitOver.png", &exitButtonTexture);
+    D3DXCreateTextureFromFile(d3ddev, "Assets\\quit-icon.png", &exitButtonTexture);
 
     // Adjust button positions and sizes
-    startButtonRect = { 250, 150, 450, 350 };  // Start button (lower position, smaller height)
-    exitButtonRect = { 250, 380, 450, 430 };   // Exit button (closer to the start button)
+    startButtonRect = { 250, 350, 850, 570 };  // Start button (lower position, smaller height)
+    exitButtonRect = { 700, 50, 1000, 190 };   // Exit button (closer to the start button)
 
     // Set up text rectangle (position)
-    menuTextRect = { 250, 150, 450, 200 };     // Centered above the buttons
+    //menuTextRect = { 250, 150, 450, 200 };     // Centered above the buttons
 
     // Create font for rendering text
     D3DXCreateFont(d3ddev, 40, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Arial"), &font);

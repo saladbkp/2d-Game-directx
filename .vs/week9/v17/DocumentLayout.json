@@ -15,8 +15,20 @@
       "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\MainMenu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Cactus.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Polygon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Polygon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Cactus.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Leaf.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -25,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Leaf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Leaf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Cactus.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Cactus.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Ball.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -45,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\CustomShapes.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\CustomShapes.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,8 +58,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 413,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\main.cpp",
+              "RelativeDocumentMoniker": "week9\\main.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\main.cpp",
+              "RelativeToolTip": "week9\\main.cpp",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAAwE8BAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-14T16:35:28.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Cactus.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.h",
+              "RelativeDocumentMoniker": "week9\\Cactus.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.h",
+              "RelativeToolTip": "week9\\Cactus.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-16T04:49:33.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainMenu.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\MainMenu.cpp",
+              "RelativeDocumentMoniker": "week9\\MainMenu.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\MainMenu.cpp",
+              "RelativeToolTip": "week9\\MainMenu.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-14T16:44:34.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FileName.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp",
+              "RelativeDocumentMoniker": "week9\\FileName.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp",
+              "RelativeToolTip": "week9\\FileName.cpp",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAwCoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-14T16:44:29.357Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -75,65 +127,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Cactus.h",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.h",
-              "RelativeDocumentMoniker": "week9\\Cactus.h",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.h",
-              "RelativeToolTip": "week9\\Cactus.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-16T04:49:33.517Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainMenu.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\MainMenu.cpp",
-              "RelativeDocumentMoniker": "week9\\MainMenu.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\MainMenu.cpp",
-              "RelativeToolTip": "week9\\MainMenu.cpp",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAcAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-14T16:44:34.347Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FileName.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp",
-              "RelativeDocumentMoniker": "week9\\FileName.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp",
-              "RelativeToolTip": "week9\\FileName.cpp",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAwCoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-14T16:44:29.357Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\main.cpp",
-              "RelativeDocumentMoniker": "week9\\main.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\main.cpp",
-              "RelativeToolTip": "week9\\main.cpp",
-              "ViewState": "AgIAAOECAAAAAAAAAAAAwOoCAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-14T16:35:28.718Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Cactus.cpp",
               "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.cpp",
               "RelativeDocumentMoniker": "week9\\Cactus.cpp",
               "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Cactus.cpp",
               "RelativeToolTip": "week9\\Cactus.cpp",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAQwFYAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAQwFYAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-16T04:43:42.54Z",
               "EditorCaption": ""
@@ -142,24 +142,11 @@
         },
         {
           "DockedWidth": 269,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Leaf.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Leaf.cpp",
-              "RelativeDocumentMoniker": "week9\\Leaf.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Leaf.cpp",
-              "RelativeToolTip": "week9\\Leaf.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAwA8AAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-16T04:34:06.762Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Ball.h",
               "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Ball.h",
               "RelativeDocumentMoniker": "week9\\Ball.h",
@@ -172,33 +159,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Ball.cpp",
               "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Ball.cpp",
               "RelativeDocumentMoniker": "week9\\Ball.cpp",
               "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Ball.cpp",
               "RelativeToolTip": "week9\\Ball.cpp",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAAAE0AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAABBwE0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-16T04:22:59.951Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Polygon.cpp",
               "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Polygon.cpp",
               "RelativeDocumentMoniker": "week9\\Polygon.cpp",
               "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Polygon.cpp",
               "RelativeToolTip": "week9\\Polygon.cpp",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAAC4AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAAAGkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-14T16:38:52.92Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
+              "Title": "Leaf.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Leaf.cpp",
+              "RelativeDocumentMoniker": "week9\\Leaf.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Leaf.cpp",
+              "RelativeToolTip": "week9\\Leaf.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwA8AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-16T04:34:06.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Leaf.h",
               "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Leaf.h",
               "RelativeDocumentMoniker": "week9\\Leaf.h",
@@ -211,7 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CustomShapes.cpp",
               "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\CustomShapes.cpp",
               "RelativeDocumentMoniker": "week9\\CustomShapes.cpp",

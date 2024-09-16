@@ -198,8 +198,8 @@ void InitD3D(HWND hWnd) {
     g_frameTimer.init(6000); // 60 FPS
 
     // Initialize screens
-    splashScreen.Init(d3ddev, L"Assets\\loading.png");
-    gameOverScreen.Init(d3ddev, L"Assets\\result.png");
+    splashScreen.Init(d3ddev, L"Assets\\loading.jpg");
+    gameOverScreen.Init(d3ddev, L"Assets\\result.jpg");
     mainMenu.Init(d3ddev);
 
     // Init Components
@@ -239,7 +239,7 @@ void InitD3D(HWND hWnd) {
     cactus = GetCactus();
 
     // init puase
-    HRESULT hr = D3DXCreateTextureFromFile(d3ddev, "Assets\\pause.png", &pauseTexture);
+    HRESULT hr = D3DXCreateTextureFromFile(d3ddev, "Assets\\continue-round.png", &pauseTexture);
     if (FAILED(hr)) {
         // Handle error
         MessageBox(NULL, "Could not load pause.png", "Error", MB_OK);
@@ -744,7 +744,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     RegisterClassEx(&wc);
 
-    hWnd = CreateWindowEx(0, "WindowClass", "Main Menu Example", WS_OVERLAPPEDWINDOW,
+    hWnd = CreateWindowEx(0, "WindowClass", "Bamboo Run", WS_OVERLAPPEDWINDOW,
         300, 300, 900, 700, nullptr, nullptr, hInstance, nullptr);
 
     ShowWindow(hWnd, nCmdShow);
