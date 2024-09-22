@@ -30,9 +30,9 @@ int animMaxnum_Polygon = 4;
 float startAnimY_Polygon = 0.0f;
 
 // Define constants for gravity and jump
-const float GRAVITY = 0.5f; // The rate at which gravity pulls the polygon down
+const float GRAVITY = 0.4f; // The rate at which gravity pulls the polygon down
 const float JUMP_VELOCITY = -10.0f; // Initial velocity for jumping
-bool isJumping = false; // To check if the polygon is currently jumping
+bool isJumping = false;
 float verticalVelocity = 0.0f; // The vertical velocity of the polygon
 
 // Initialize polygon vertices, texture, and properties
@@ -194,6 +194,11 @@ void DrawPolygon(LPDIRECT3DDEVICE9 pDevice) {
     pDevice->SetTexture(0, g_pTexturePolygon);
     pDevice->SetStreamSource(0, g_pVtxBuffPolygon, 0, sizeof(VERTEX_2D));
     pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
+}
+
+bool isChacacterJumping()
+{
+    return isJumping;
 }
 
 // Get a reference to the polygon

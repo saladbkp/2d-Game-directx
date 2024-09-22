@@ -24,6 +24,7 @@
     <ProjectGuid>{ef6129a0-e89c-4066-bd8e-bfc3c6e902a1}</ProjectGuid>
     <RootNamespace>week9</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>logo</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -138,15 +139,18 @@
     <ClCompile Include="Cactus.cpp" />
     <ClCompile Include="CustomShapes.cpp" />
     <ClCompile Include="FileName.cpp" />
+    <ClCompile Include="FileName2.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Leaf.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Polygon.cpp" />
+    <ClCompile Include="SettingsManager.cpp" />
+    <ClCompile Include="SettingsMenu.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,18 +160,27 @@
     <ClInclude Include="Cactus.h" />
     <ClInclude Include="CustomShapes.h" />
     <ClInclude Include="FrameTimer.h" />
+    <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Input.h" />
     <ClInclude Include="Leaf.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Polygon.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SettingsManager.h" />
+    <ClInclude Include="SettingsMenu.h" />
     <ClInclude Include="SplashScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fmod.dll" />
     <None Include="fmodL.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="logo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\logo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

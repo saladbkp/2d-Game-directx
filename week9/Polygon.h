@@ -80,9 +80,10 @@ void UninitPolygon(void);
 void UpdatePolygon(void);
 void DrawPolygon(LPDIRECT3DDEVICE9 pDevice);
 void SetPolygon(D3DXVECTOR3 pos);
+bool isChacacterJumping();
 typedef struct
 {
-	D3DXVECTOR3 pos;		
+	D3DXVECTOR3 pos;
 	float fWidth;	
 	float fHeight;		
 	int nLife;		

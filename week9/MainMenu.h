@@ -4,20 +4,25 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <windows.h>
-#include "AudioManager.h"
 
 class MainMenu {
 private:
-    LPDIRECT3DTEXTURE9 startButtonTexture;
-    LPDIRECT3DTEXTURE9 exitButtonTexture;
     LPDIRECT3DTEXTURE9 bgTexture;
-    LPD3DXFONT font; // For rendering text
+    LPDIRECT3DTEXTURE9 startButtonTexture;
+    LPDIRECT3DTEXTURE9 settingsButtonTexture;
+    LPDIRECT3DTEXTURE9 exitButtonTexture;
+    RECT bgRect;
     RECT startButtonRect;
+    RECT settingsButtonRect;
     RECT exitButtonRect;
-    RECT menuTextRect;
+    D3DXVECTOR3 bgPos;
+    D3DXVECTOR3 startButtonPos;
+    D3DXVECTOR3 settingsButtonPos;
+    D3DXVECTOR3 exitButtonPos;
     bool startClicked;
+    bool settingsClicked;
     bool exitClicked;
-    AudioManager audioManager;  // Audio manager instance
+
 
 public:
     MainMenu();
@@ -25,6 +30,7 @@ public:
     void Render(LPDIRECT3DDEVICE9 d3ddev);
     void HandleInput(POINT mousePos, bool isClick);
     bool IsStartClicked();
+    bool IsSettingsClicked();
     bool IsExitClicked();
     void Cleanup();
 };

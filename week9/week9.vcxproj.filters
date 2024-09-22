@@ -7,13 +7,7 @@
     <ClCompile Include="FrameTimer.cpp">
       <Filter>Old</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="SplashScreen.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="audioManager.cpp">
@@ -37,9 +31,6 @@
     <ClCompile Include="Polygon.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Helper</Filter>
-    </ClCompile>
     <ClCompile Include="Cactus.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
@@ -48,6 +39,24 @@
     </ClCompile>
     <ClCompile Include="Leaf.cpp">
       <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="FileName2.cpp">
+      <Filter>Old</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsMenu.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>GameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,8 +72,11 @@
     <Filter Include="GameLogic">
       <UniqueIdentifier>{94377176-0e73-4290-8719-225887d9fd80}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Helper">
-      <UniqueIdentifier>{6cd2fecc-6cfb-4e56-bb19-9024ded37ea8}</UniqueIdentifier>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{a90b5c51-8f21-4ad4-bd3f-7866b4fff819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameState">
+      <UniqueIdentifier>{e325365d-1457-4f02-9ce0-6543d453f82d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -98,9 +110,6 @@
     <ClInclude Include="Polygon.h">
       <Filter>GameLogic</Filter>
     </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Helper</Filter>
-    </ClInclude>
     <ClInclude Include="Cactus.h">
       <Filter>GameLogic</Filter>
     </ClInclude>
@@ -110,6 +119,16 @@
     <ClInclude Include="Leaf.h">
       <Filter>GameLogic</Filter>
     </ClInclude>
+    <ClInclude Include="SettingsManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsMenu.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="GameStateManager.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fmod.dll">
@@ -118,5 +137,11 @@
     <None Include="fmodL.dll">
       <Filter>Source</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="logo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\logo.ico" />
   </ItemGroup>
 </Project>

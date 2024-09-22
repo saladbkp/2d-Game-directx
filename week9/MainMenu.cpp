@@ -1,29 +1,25 @@
 #include "MainMenu.h"
 #include <d3dx9.h>
 
-MainMenu::MainMenu() : startClicked(false), exitClicked(false), startButtonTexture(nullptr), exitButtonTexture(nullptr), bgTexture(nullptr), font(nullptr) {}
+MainMenu::MainMenu() : startButtonTexture(nullptr), settingsButtonTexture(nullptr), exitButtonTexture(nullptr), bgTexture(nullptr),
+startClicked(false), exitClicked(false) {}
 
 void MainMenu::Init(LPDIRECT3DDEVICE9 d3ddev) {
     // Load textures for background, start, and exit buttons
-    D3DXCreateTextureFromFile(d3ddev, "Assets\\bg1.png", &bgTexture);
+    D3DXCreateTextureFromFile(d3ddev, "Assets\\mainmenubg.png", &bgTexture);
     D3DXCreateTextureFromFile(d3ddev, "Assets\\start-icon.png", &startButtonTexture);
+    D3DXCreateTextureFromFile(d3ddev, "Assets\\setting-icon.png", &settingsButtonTexture);
     D3DXCreateTextureFromFile(d3ddev, "Assets\\quit-icon.png", &exitButtonTexture);
 
-    // Adjust button positions and sizes
-    startButtonRect = { 250, 350, 850, 570 };  // Start button (lower position, smaller height)
-    exitButtonRect = { 700, 50, 1000, 190 };   // Exit button (closer to the start button)
+    bgRect = { 0, 0, 900, 700 };
+    startButtonRect = { 0, 32, 128, 96 };
+    settingsButtonRect = { 0, 0, 64, 64 };
+    exitButtonRect = { 0, 0, 64, 64 };
 
-    // Set up text rectangle (position)
-    //menuTextRect = { 250, 150, 450, 200 };     // Centered above the buttons
-
-    // Create font for rendering text
-    D3DXCreateFont(d3ddev, 40, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Arial"), &font);
-
-    // Initialize audio manager
-    /*if (audioManager.Init(GetForegroundWindow())) {
-        audioManager.LoadWaveFile("Assets\\bg.wav");
-        audioManager.PlayBackgroundMusic();
-    }*/
+    bgPos = D3DXVECTOR3(0, 0, 0);
+    startButtonPos = D3DXVECTOR3(375, 400, 0);
+    settingsButtonPos = D3DXVECTOR3(800, 100, 0);
+    exitButtonPos = D3DXVECTOR3(800, 20, 0);
 }
 
 void MainMenu::Render(LPDIRECT3DDEVICE9 d3ddev) {
@@ -35,43 +31,45 @@ void MainMenu::Render(LPDIRECT3DDEVICE9 d3ddev) {
     sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
     // Render the background image
-    D3DXVECTOR3 bgPos(0, 0, 0);  // Assume background fills the entire screen
-    sprite->Draw(bgTexture, nullptr, nullptr, &bgPos, D3DCOLOR_XRGB(255, 255, 255));
+    sprite->Draw(bgTexture, &bgRect, nullptr, &bgPos, D3DCOLOR_XRGB(255, 255, 255));
 
     // Render the start button
-    D3DXVECTOR3 startPos((float)startButtonRect.left, (float)startButtonRect.top, 0);
-    sprite->Draw(startButtonTexture, nullptr, nullptr, &startPos, D3DCOLOR_XRGB(255, 255, 255));
+    sprite->Draw(startButtonTexture, nullptr, nullptr, &startButtonPos, D3DCOLOR_XRGB(255, 255, 255));
+
+    // Render the settings button
+    sprite->Draw(settingsButtonTexture, nullptr, nullptr, &settingsButtonPos, D3DCOLOR_XRGB(255, 255, 255));
 
     // Render the exit button
-    D3DXVECTOR3 exitPos((float)exitButtonRect.left, (float)exitButtonRect.top, 0);
-    sprite->Draw(exitButtonTexture, nullptr, nullptr, &exitPos, D3DCOLOR_XRGB(255, 255, 255));
+    sprite->Draw(exitButtonTexture, nullptr, nullptr, &exitButtonPos, D3DCOLOR_XRGB(255, 255, 255));
 
     // End the sprite rendering process
     sprite->End();
 
-    // Render the menu text
-    /*RECT textRect = menuTextRect;
-    font->DrawText(nullptr, TEXT("Main Menu"), -1, &textRect, DT_CENTER | DT_VCENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));*/
-
-    // Release the sprite
     sprite->Release();
 }
 
 void MainMenu::HandleInput(POINT mousePos, bool isClick) {
     // Reset clicks each frame
     startClicked = false;
+    settingsClicked = false;
     exitClicked = false;
 
     if (isClick) {
         // Check if the start button is clicked
-        if (mousePos.x >= startButtonRect.left && mousePos.x <= startButtonRect.right &&
-            mousePos.y >= startButtonRect.top && mousePos.y <= startButtonRect.bottom) {
+        if (mousePos.x >= startButtonPos.x && mousePos.x <= startButtonPos.x + startButtonRect.right &&
+            mousePos.y >= startButtonPos.y && mousePos.y <= startButtonPos.y + startButtonRect.bottom) {
             startClicked = true;
         }
-
+        // Check if the settings button is clicked
+        if (mousePos.x >= settingsButtonPos.x && mousePos.x <= settingsButtonPos.x + settingsButtonRect.right &&
+            mousePos.y >= settingsButtonPos.y && mousePos.y <= settingsButtonPos.y + settingsButtonRect.bottom ||
+            mousePos.x >= settingsButtonPos.x && mousePos.x <= settingsButtonPos.x + (settingsButtonRect.right - settingsButtonRect.left) &&
+            mousePos.y >= settingsButtonPos.y && mousePos.y <= settingsButtonPos.y + (settingsButtonRect.bottom - settingsButtonRect.top)) {
+            settingsClicked = true;
+        }
         // Check if the exit button is clicked
-        if (mousePos.x >= exitButtonRect.left && mousePos.x <= exitButtonRect.right &&
-            mousePos.y >= exitButtonRect.top && mousePos.y <= exitButtonRect.bottom) {
+        if (mousePos.x >= exitButtonPos.x && mousePos.x <= exitButtonPos.x + exitButtonRect.right &&
+            mousePos.y >= exitButtonPos.y && mousePos.y <= exitButtonPos.y + exitButtonRect.bottom) {
             exitClicked = true;
         }
     }
@@ -79,6 +77,10 @@ void MainMenu::HandleInput(POINT mousePos, bool isClick) {
 
 bool MainMenu::IsStartClicked() {
     return startClicked;
+}
+
+bool MainMenu::IsSettingsClicked() {
+    return settingsClicked;
 }
 
 bool MainMenu::IsExitClicked() {
@@ -94,14 +96,12 @@ void MainMenu::Cleanup() {
         startButtonTexture->Release();
         startButtonTexture = nullptr;
     }
+    if (settingsButtonTexture) {
+        settingsButtonTexture->Release();
+        settingsButtonTexture = nullptr;
+    }
     if (exitButtonTexture) {
         exitButtonTexture->Release();
         exitButtonTexture = nullptr;
     }
-    if (font) {
-        font->Release();
-        font = nullptr;
-    }
-
-    audioManager.Cleanup();  // Clean up audio resources
 }

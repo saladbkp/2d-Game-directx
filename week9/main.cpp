@@ -18,7 +18,14 @@
 #include <string>
 #include "background.h"
 #include "Leaf.h"
+#include "AudioManager.h"
+#include "SettingsManager.h"
+#include "SettingsMenu.h"
+#include "resource.h"
+#include "GameStateManager.h"
+#include <iostream>
 
+HWND hWnd;
 
 // Global Direct3D variables
 LPDIRECT3D9 d3d;
@@ -29,19 +36,19 @@ LPDIRECT3DDEVICE9 d3ddev;
 LPD3DXFONT g_pFont = nullptr;
 FrameTimer g_frameTimer;
 
-// Game states
-enum GameState {
-    SPLASH,
-    MAINMENU,
-    GAME,
-    GAMEOVER
-};
-GameState gameState = SPLASH;
+//// Game states
+//enum GameState {
+//    SPLASH,
+//    MAINMENU,
+//    SETTINGSMENU,
+//    GAME,
+//    GAMEOVER
+//};
+//GameState gameState = SPLASH;
 
-// Instances for screens
-SplashScreen splashScreen;
-SplashScreen gameOverScreen;
-MainMenu mainMenu;
+// Handle gmae logic if player loses a round
+bool roundLost = false;
+bool isPaused = false;
 
 // Mouse input variables
 POINT mousePos;
@@ -70,6 +77,7 @@ Paddle p;
 
 // SETUP POLYGON
 POLYGON* player;
+//bool isJumping = false;
 
 // setup cactus
 CACTUS* cactus;
@@ -111,6 +119,35 @@ AudioManager* audioManager = new AudioManager();
 bool isBounced = false;
 float ballSpeed;
 float frequency;
+float defaultFrequency = 50000;
+bool isUIClicked = false;
+
+//Initialize settings to adjust volume
+SettingsManager* settingsManager = new SettingsManager();
+
+// Instances for screens
+SplashScreen splashScreen;
+SplashScreen gameOverScreen;
+MainMenu mainMenu;
+SettingsMenu settingsMenu(audioManager, settingsManager);
+
+//	Direct Input object.
+LPDIRECTINPUT8 dInput;
+//	Direct Input keyboard device.
+LPDIRECTINPUTDEVICE8  dInputKeyboardDevice;
+LPDIRECTINPUTDEVICE8 dInputMouseDevice;
+//	Key input buffer
+BYTE  diKeys[256];
+
+// This is required to hold the state of the mouse
+// This variable holds the current state of the mouse device
+DIMOUSESTATE mouseState;
+// This variable holds the current X position of the sprite
+LONG currentXpos = 320;
+// This variable holds the current Y position of the sprite
+LONG currentYpos = 240;
+LPD3DXFONT mouseFont = NULL;
+RECT mouseFontRect;
 
 // helper function
 // Custom max function
@@ -125,6 +162,9 @@ T Min(T a, T b) {
     return (a < b) ? a : b;
 }
 
+GameStateManager gameStateManager;
+
+#pragma region init
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     switch (message) {
     case WM_DESTROY:
@@ -139,9 +179,29 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
     return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
-void InitD3D(HWND hWnd) {
-    d3d = Direct3DCreate9(D3D_SDK_VERSION);
+void createWindow(HINSTANCE hInstance, int nCmdShow) {
+    WNDCLASSEX wc = {};
 
+    wc.cbSize = sizeof(WNDCLASSEX);
+    wc.style = CS_HREDRAW | CS_VREDRAW;
+    wc.lpfnWndProc = WindowProc;
+    wc.hInstance = hInstance;
+    wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
+    wc.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
+    wc.lpszClassName = "WindowClass";
+
+    RegisterClassEx(&wc);
+
+    hWnd = CreateWindowEx(0, "WindowClass", "Bamboo Spy", WS_OVERLAPPEDWINDOW,
+        250, 50, 900, 700, nullptr, nullptr, hInstance, nullptr);
+
+    ShowWindow(hWnd, nCmdShow);
+
+
+}
+
+void createDirect3D9(HWND hWnd) {
+    d3d = Direct3DCreate9(D3D_SDK_VERSION);
 
     D3DPRESENT_PARAMETERS d3dpp = {};
     d3dpp.Windowed = TRUE;
@@ -150,9 +210,10 @@ void InitD3D(HWND hWnd) {
 
     d3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
         D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &d3ddev);
-    
 
-    // init fps
+}
+
+void createFont() {
     D3DXFONT_DESC fontDesc = {
         20, // Height
         0,  // Width
@@ -178,90 +239,229 @@ void InitD3D(HWND hWnd) {
         DEFAULT_PITCH | FF_DONTCARE, // PitchAndFamily
         "Segoe UI Emoji" // FontFamily
     };
-    if (FAILED(D3DXCreateFontIndirect(d3ddev, &fontDesc, &g_pFont)))
-    {
+
+    if (FAILED(D3DXCreateFontIndirect(d3ddev, &fontDesc, &g_pFont))) {
         MessageBox(NULL, "Failed to create font!", "Error", MB_OK);
         return;
     }
-    if (FAILED(D3DXCreateFontIndirect(d3ddev, &fontScoreDesc, &g_pFontScore)))
-    {
-        MessageBox(NULL, "Failed to create heart font!", "Error", MB_OK);
+
+    if (FAILED(D3DXCreateFontIndirect(d3ddev, &fontScoreDesc, &g_pFontScore))) {
+        MessageBox(NULL, "Failed to create score font!", "Error", MB_OK);
         return;
     }
+}
 
-    // draw bg
+void createSprite() {
+    // Initialize sprite for the pause screen
+    HRESULT hr = D3DXCreateTextureFromFile(d3ddev, "Assets\\pandaerror.png", &pauseTexture);
+    if (FAILED(hr)) {
+        MessageBox(NULL, "Could not load pause.png", "Error", MB_OK);
+    }
+    D3DXCreateSprite(d3ddev, &spritepauseHandler);
+}
+
+void createLine() {
+    // Initialize lines or custom shapes if needed
+    // This can be customized based on the need for drawing lines or polygon
+    InitPolygon(d3ddev);
+    player = GetPolygon();  // Fetch polygon instance
+}
+
+void initializeComponents() {
+    // Initialize FPS and other components
+    g_frameTimer.init(60); // 60 FPS
+
+    // Initialize background
     bg = new ScrollingBackground(d3ddev);
-    bg->Init(d3ddev, ".\\Assets\\bgBamboo_01.png", ".\\Assets\\bgBamboo_02.png", ".\\Assets\\bgBamboo_03.png",800,600);
-
-
-    // fps
-    g_frameTimer.init(6000); // 60 FPS
+    bg->Init(d3ddev, ".\\Assets\\bgBamboo_01.png", ".\\Assets\\bgBamboo_02.png", ".\\Assets\\bgBamboo_03.png", 800, 600);
 
     // Initialize screens
-    splashScreen.Init(d3ddev, L"Assets\\loading.jpg");
-    gameOverScreen.Init(d3ddev, L"Assets\\result.jpg");
+    splashScreen.Init(d3ddev, L"Assets\\loading.png");
+    gameOverScreen.Init(d3ddev, L"Assets\\gameover.png");
     mainMenu.Init(d3ddev);
+    settingsMenu.Init(d3ddev);
 
-    // Init Components
-    // 
+    // Initialize player, obstacles, and other game components
     p.y = gfx.ScreenHeight / 2;
     p.speed = 3;
     p.size = 50;
-    // 
 
-
-    for (int i = 0; i < num_obstacles; i++)
-    {
+    for (int i = 0; i < num_obstacles; i++) {
         o[i].x = (i + 1) * obstacle_x_spacing;
         o[i].y = _y(rng);
         o[i].vy = _vy(rng);
-        while (o[i].vy == 0)
-        {
+        while (o[i].vy == 0) {
             o[i].vy = _vy(rng);
         }
         o[i].x_size = obstacle_x_size;
         o[i].y_size = _ysize(rng);
-
     }
+
     b.resetBall(gfx.ScreenWidth - 100, gfx.ScreenHeight / 2, 20);
     b2.resetBall(b2.x, b2.y);
-    
-    //b3.resetLeaf(_x(rng), gfx.ScreenHeight, _xsize(rng));
+
     InitLeaf(d3ddev);
     leaf = GetLeaf();
 
-    // Initialize the polygon here
-    InitPolygon(d3ddev);
-    player = GetPolygon();  // Fetch polygon instance if needed
-
-    // init cactus
     InitCactus(d3ddev);
     cactus = GetCactus();
-
-    // init puase
-    HRESULT hr = D3DXCreateTextureFromFile(d3ddev, "Assets\\continue-round.png", &pauseTexture);
-    if (FAILED(hr)) {
-        // Handle error
-        MessageBox(NULL, "Could not load pause.png", "Error", MB_OK);
-    }
-    D3DXCreateSprite(d3ddev, &spritepauseHandler);
 
     // Initialize audio manager
     audioManager->InitializeAudio();
     audioManager->LoadSound();
-    audioManager->PlaySoundTrack();
-
+    audioManager->PlaySoundTrack(settingsManager);
 }
 
-void Sound() {
-    if (isBounced) {
-        ballSpeed = b.vx * b.vx + b.vy * b.vy;
-        frequency = 50000 + (ballSpeed * ballSpeed / 2);
-        audioManager->PlaySound1("Bounce sound 2", frequency);
-        isBounced = false;
+bool windowIsRunning(MSG msg) {
+    while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+    {
+        if (msg.message == WM_QUIT)
+            return false;
+
+        TranslateMessage(&msg);
+
+        DispatchMessage(&msg);
+    }
+    return true;
+}
+int createDirectInput() {
+
+    //	Create the Direct Input object.
+    HRESULT hr = DirectInput8Create(GetModuleHandle(NULL), 0x0800, IID_IDirectInput8, (void**)&dInput, NULL);
+    if (FAILED(hr))
+    {
+        //cout << "DirectInput8Create Fail" << endl;
+        return 0;
+    }
+
+    //	Create the keyboard device.
+    hr = dInput->CreateDevice(GUID_SysKeyboard, &dInputKeyboardDevice, NULL);
+    if (FAILED(hr))
+    {
+        //cout << "CreateDevice dInputKeyboardDevice Fail" << endl;
+        return 0;
+    }
+
+    dInputKeyboardDevice->SetDataFormat(&c_dfDIKeyboard);
+
+    dInputKeyboardDevice->SetCooperativeLevel(/*HWND*/hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+
+    hr = dInput->CreateDevice(GUID_SysMouse, &dInputMouseDevice, NULL);
+    if (FAILED(hr))
+    {
+        //cout << "CreateDevice dInputMouseDevice Fail" << endl;
+        return 0;
+    }
+
+    hr = dInputMouseDevice->SetDataFormat(&c_dfDIMouse);
+    if (FAILED(hr))
+    {
+        //cout << "dInputMouseDevice SetDataFormat Fail" << endl;
+        return 0;
+    }
+
+    dInputMouseDevice->SetCooperativeLevel(/*HWND*/hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+
+    //ShowCursor(FALSE);
+}
+
+void getInput() {
+    dInputKeyboardDevice->Acquire();
+    dInputKeyboardDevice->GetDeviceState(256, diKeys);
+
+    dInputMouseDevice->Acquire();
+    dInputMouseDevice->GetDeviceState(sizeof(mouseState), &mouseState);
+}
+
+void cleanupDirectInput() {
+    //	Release keyboard device.
+    dInputKeyboardDevice->Unacquire();
+    dInputKeyboardDevice->Release();
+    dInputKeyboardDevice = NULL;
+
+    //	Release mouse device.
+    dInputMouseDevice->Unacquire();
+    dInputMouseDevice->Release();
+    dInputMouseDevice = NULL;
+
+    //	Release DirectInput.
+    dInput->Release();
+    dInput = NULL;
+}
+
+#pragma endregion
+
+#pragma region game logic
+// obstacle hit
+bool obstacleHitx(int i)
+{
+
+    if (b.vx > 0)
+    {
+        return (b.x >= (o[i].x) - (b.diameter / 2) &&
+            b.x <= o[i].x - (b.diameter / 2) + b.vx &&
+            b.y - b.diameter / 2 <= o[i].y + o[i].y_size &&
+            b.y + b.diameter / 2 >= o[i].y);
+    }
+    else if (b.vx < 0)
+    {
+        return (b.x - b.diameter / 2 <= (o[i].x) + o[i].x_size &&
+            b.x - b.diameter / 2 >= o[i].x + o[i].x_size + b.vx &&
+            b.y - b.diameter / 2 <= o[i].y + o[i].y_size &&
+            b.y + b.diameter / 2 >= o[i].y);
+    }
+    else
+    {
+        return false;
     }
 }
 
+bool obstacleHity(int i)
+{
+
+    if (b.vy > 0)
+    {
+        return (b.y + b.diameter / 2 >= o[i].y &&
+            b.y + b.diameter / 2 <= o[i].y + b.vy &&
+            b.x + b.diameter / 2 >= o[i].x &&
+            b.x - b.diameter / 2 <= o[i].x + o[i].x_size
+            );
+    }
+    else if (b.vy < 0)
+    {
+        return (b.y - b.diameter / 2 <= o[i].y + o[i].y_size &&
+            b.y - b.diameter / 2 >= o[i].y + o[i].y_size + b.vy &&
+            b.x + b.diameter / 2 >= o[i].x &&
+            b.x - b.diameter / 2 <= o[i].x + o[i].x_size
+            );
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void resetBallAndGameStatus() {
+    b.vx = -NORMAL_SPEED_X; // Reset to normal speed
+    b.vy = NORMAL_SPEED_Y; // Reset to normal speed
+    b.resetBall(gfx.ScreenWidth - 100, gfx.ScreenHeight / 2);
+    score = 0;
+    chance -= 1;
+    isPaused = true;
+}
+
+
+bool paddleHit()
+{
+    return (b.vx > 0 &&
+        b.x > (p.x) - (b.diameter / 2) &&
+        b.x + b.diameter / 2 > p.x + 3 &&
+        b.y - b.diameter / 2 < p.y + p.size / 2 &&
+        b.y + b.diameter / 2 > p.y - p.size / 2);
+}
+#pragma endregion
+
+#pragma region render component
 // render fps
 // Render FPS on the screen
 void RenderFPS()
@@ -340,135 +540,57 @@ void RenderScore() {
 
 }
 
+void ComposeFrame() {
+    CustomShapes::drawCourt(gfx);
+    b.drawCircle(gfx, b.x, b.y, b.diameter / 2, 0, 0, 200);
+    p.drawPaddle(gfx, p.y, p.size);
+    for (int i = 0; i < num_obstacles; i++)
+    {
+        o[i].drawObstacle(gfx, o[i].x, o[i].y);
+    }
 
-// obstacle hit
-bool obstacleHitx(int i)
-{
+    // gravity drop
+    DrawLeaf(d3ddev);
 
-    if (b.vx > 0)
-    {
-        return (b.x >= (o[i].x) - (b.diameter / 2) &&
-            b.x <= o[i].x - (b.diameter / 2) + b.vx &&
-            b.y - b.diameter / 2 <= o[i].y + o[i].y_size &&
-            b.y + b.diameter / 2 >= o[i].y);
+    // Draw the polygon during frame composition
+    DrawPolygon(d3ddev);
+
+    // Draw cactus
+    DrawCactus(d3ddev);
+}
+#pragma endregion
+
+void Sound() {
+    if (isBounced) {
+        ballSpeed = b.vx * b.vx + b.vy * b.vy;
+        frequency = 50000 + (ballSpeed * ballSpeed / 10);
+        audioManager->PlaySound1("Bounce sound 2", frequency, settingsManager);
+        isBounced = false;
     }
-    else if (b.vx < 0)
-    {
-        return (b.x - b.diameter / 2 <= (o[i].x) + o[i].x_size &&
-            b.x - b.diameter / 2 >= o[i].x + o[i].x_size + b.vx &&
-            b.y - b.diameter / 2 <= o[i].y + o[i].y_size &&
-            b.y + b.diameter / 2 >= o[i].y);
+
+    if (isUIClicked) {
+        audioManager->PlaySound1("Click sound", defaultFrequency, settingsManager);
+        isUIClicked = false;
     }
-    else
-    {
-        return false;
-    }
+
+    //if (isJumping) {
+    //    audioManager->PlaySound1("Jump sound", defaultFrequency, settingsManager);
+    //    isJumping = false;
+    //}
 }
 
-bool obstacleHity(int i)
-{
+void update() {
 
-    if (b.vy > 0)
-    {
-        return (b.y + b.diameter / 2 >= o[i].y &&
-            b.y + b.diameter / 2 <= o[i].y + b.vy &&
-            b.x + b.diameter / 2 >= o[i].x &&
-            b.x - b.diameter / 2 <= o[i].x + o[i].x_size
-            );
-    }
-    else if (b.vy < 0)
-    {
-        return (b.y - b.diameter / 2 <= o[i].y + o[i].y_size &&
-            b.y - b.diameter / 2 >= o[i].y + o[i].y_size + b.vy &&
-            b.x + b.diameter / 2 >= o[i].x &&
-            b.x - b.diameter / 2 <= o[i].x + o[i].x_size
-            );
-    }
-    else
-    {
-        return false;
-    }
-}
-
-void pauseMode() {
-    b.vx = -NORMAL_SPEED_X; // Reset to normal speed
-    b.vy = NORMAL_SPEED_Y; // Reset to normal speed
-    b.resetBall(gfx.ScreenWidth - 100, gfx.ScreenHeight / 2);
-    score = 0;
-    chance -= 1;
-    if (chance == 0) {
-        gameState = GAMEOVER;
-    }
-    bool isPaused = true;  // Set the initial state to paused
-
-    while (isPaused)
-    {
-        // Clear the screen (optional, you might want to retain the game background)
-        d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
-
-        // Begin the scene (ensure you're working within the rendering loop)
-        d3ddev->BeginScene();
-
-        // Begin the sprite drawing process
-        spritepauseHandler->Begin(D3DXSPRITE_ALPHABLEND);
-
-        // Get the width and height of the texture (pause.png)
-        D3DSURFACE_DESC desc;
-        pauseTexture->GetLevelDesc(0, &desc);
-        int imageWidth = desc.Width;
-        int imageHeight = desc.Height;
-
-        // Calculate the position to center the image
-        //int posX = (screenWidth / 2) - (imageWidth / 2);
-        //int posY = (screenHeight / 2) - (imageHeight / 2);
-
-        // Set the position to draw the texture at the center of the screen
-        D3DXVECTOR3 position(100, 100, 0.0f);
-
-        // Draw the texture (pause.png)
-        spritepauseHandler->Draw(pauseTexture, NULL, NULL, &position, D3DCOLOR_XRGB(255, 255, 255));
-
-        // End the sprite drawing process
-        spritepauseHandler->End();
-
-        // End the scene rendering
-        d3ddev->EndScene();
-
-        // Present the back buffer to the display
-        d3ddev->Present(NULL, NULL, NULL, NULL);
-
-        // Check if the user presses the Enter key to resume the game
-        if (GetAsyncKeyState(VK_SPACE) & 0x8000)
-        {
-            isPaused = false;  // Exit the loop and resume the game
-        }
+    if (diKeys[DIK_UP] & 0x80) {
+        p.y -= p.speed + 5;
     }
 
-}
+    if (diKeys[DIK_DOWN] & 0x80) {
 
-bool paddleHit()
-{
-    return (b.vx > 0 &&
-        b.x > (p.x) - (b.diameter / 2) &&
-        b.x + b.diameter / 2 > p.x + 3 &&
-        b.y - b.diameter / 2 < p.y + p.size / 2 &&
-        b.y + b.diameter / 2 > p.y - p.size / 2);
-}
-
-
-void UpdateModel() {
-
-    if (GetAsyncKeyState(VK_UP) & 0x8000) {
-
-        p.y -= p.speed;
-    }
-
-    if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-
-        p.y += p.speed;
+        p.y += p.speed + 5;
     }
     
-    if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+    if (diKeys[DIK_SPACE] & 0x80) {
         
         if (!b.inMotion)
         {
@@ -487,22 +609,27 @@ void UpdateModel() {
     if (b.y > (gfx.ScreenHeight - 10) - (b.diameter / 2) - abs(b.vy))
     {
         b.vy = -b.vy;
+        // Play sound effect
+        isBounced = true;
     }
 
     if (b.y < 10 + (b.diameter / 2) + abs(b.vy))
     {
         b.vy = -b.vy;
+        // Play sound effect
+        isBounced = true;
     }
 
     if (b.x > (gfx.ScreenWidth - 10) - (b.diameter / 2) - abs(b.vx))
     {
-        pauseMode();
-        
+        resetBallAndGameStatus();
     }
 
     if (b.x < 10 + (b.diameter / 2) + abs(b.vx))
     {
         b.vx = -b.vx;
+        // Play sound effect
+        isBounced = true;
     }
          
 
@@ -602,44 +729,24 @@ void UpdateModel() {
     if (ball_hit) {
         if (leaf->bActive) {
             score += 10;
+            if (score > highscore) {
+                highscore = score;
+            }
             leaf->bActive = false;
-
         }
-
     }
 
     bool cactus_hit = CheckCollisionWithPlayer(player->pos, 60, 60);
     if (cactus_hit) {
         if (cactus->bActive) {
-            pauseMode();
-
+            resetBallAndGameStatus();
             cactus->bActive = false;
             cactus->pos = D3DXVECTOR3(SCREEN_WIDTH + cactus->fWidth / 2, SCREEN_HEIGHT - cactus->fHeight / 2, 0.0f);
         }
-        
     }
 }
 
-void ComposeFrame() {
-    CustomShapes::drawCourt(gfx);
-    b.drawCircle(gfx, b.x, b.y, b.diameter / 2, 0, 0, 200);
-    p.drawPaddle(gfx, p.y, p.size);
-    for (int i = 0; i < num_obstacles; i++)
-    {
-        o[i].drawObstacle(gfx, o[i].x, o[i].y);
-    }
-
-    // gravity drop
-    DrawLeaf(d3ddev);
-
-    // Draw the polygon during frame composition
-    DrawPolygon(d3ddev);
-
-    // Draw cactus
-    DrawCactus(d3ddev);
-}
-
-void RenderFrame() {
+void render() {
     d3ddev->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
     d3ddev->BeginScene();
 
@@ -647,66 +754,11 @@ void RenderFrame() {
     RenderFPS();
     RenderScore();
 
-    if (gameState == SPLASH) {
-        // Start timing when splash screen starts
-        if (!splashStarted) {
-            splashStartTime = std::chrono::steady_clock::now();
-            splashStarted = true;
-        }
-
-        // Render Splash Screen
-        splashScreen.Render(d3ddev);
-
-        // Check if 3 seconds have passed or mouse click occurred
-        auto elapsedTime = std::chrono::steady_clock::now() - splashStartTime;
-        if (std::chrono::duration_cast<std::chrono::seconds>(elapsedTime).count() >= 3 || isClick) {
-            gameState = MAINMENU;  // Auto transition to main menu
-        }
-    }
-    else if (gameState == MAINMENU) {
-        // Render Main Menu
-        mainMenu.Render(d3ddev);
-
-        // Handle input and check button clicks
-        mainMenu.HandleInput(mousePos, isClick);
-
-        // Check if buttons are clicked
-        if (mainMenu.IsStartClicked()) {
-            
-            
-            
-            gameState = GAME;  // Proceed to the game
-            if (isClick) {
-                gameState = GAME;
-
-                
-
-                // End the scene
-                // d3ddev->EndScene();
-
-            }
-        }
-        if (mainMenu.IsExitClicked()) {
-            PostQuitMessage(0);  // Exit the application
-        }
-    }
-    else if (gameState == GAME) {
-        //// Update the background scroll offsets based on input
-        HandlePlayerMovement(*bg);
-
-        //// Render the scrolling background
-        bg->Render(d3ddev);
-
-        UpdateModel();
+    // Update the game state
+    gameStateManager.Update(d3ddev, mousePos, isClick, isUIClicked, &score,&chance,bg,&isPaused, spritepauseHandler, pauseTexture);
+    
+    if (gameStateManager.GetCurrentState() == 3) {
         ComposeFrame();
-    }
-    else if (gameState == GAMEOVER) {
-        gameOverScreen.Render(d3ddev);
-        if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-            gameState = GAME;
-            score = 0;
-            chance = 3;
-        }
     }
     
     d3ddev->EndScene();
@@ -718,58 +770,68 @@ void RenderFrame() {
 void Cleanup() {
     splashScreen.Cleanup();
     mainMenu.Cleanup();
+    audioManager->Cleanup();
+    settingsMenu.Cleanup();
     d3ddev->Release();
     d3d->Release();
     g_pFont->Release();
     g_pFontScore->Release();
     
+    // Release textures and sprites
+    if (pauseTexture) {
+        pauseTexture->Release();
+        pauseTexture = nullptr;
+    }
+    if (spritepauseHandler) {
+        spritepauseHandler->Release();
+        spritepauseHandler = nullptr;
+    }
+
+    if (o) {
+        delete[] o;
+        o = nullptr;
+    }
+    if (o2) {
+        delete[] o2;
+        o2 = nullptr;
+    }
     if (bg) {
         delete bg;
         bg = nullptr;
     }
 
     UninitPolygon();
+    cleanupDirectInput();
 }
 
+
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    HWND hWnd;
-    WNDCLASSEX wc = {};
+    // Initialize audio manager
+    audioManager->InitializeAudio();
+    audioManager->LoadSound();
+    audioManager->PlaySoundTrack(settingsManager);
 
-    wc.cbSize = sizeof(WNDCLASSEX);
-    wc.style = CS_HREDRAW | CS_VREDRAW;
-    wc.lpfnWndProc = WindowProc;
-    wc.hInstance = hInstance;
-    wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-    wc.lpszClassName = "WindowClass";
-
-    RegisterClassEx(&wc);
-
-    hWnd = CreateWindowEx(0, "WindowClass", "Bamboo Run", WS_OVERLAPPEDWINDOW,
-        300, 300, 900, 700, nullptr, nullptr, hInstance, nullptr);
-
-    ShowWindow(hWnd, nCmdShow);
-
-    InitD3D(hWnd);
-
+    createWindow(hInstance, nCmdShow);
+    createDirect3D9(hWnd);
+    createFont();
+    createSprite();
+    createLine();
+    createDirectInput();
+    initializeComponents();
+    gameStateManager.Init(d3ddev,audioManager,settingsManager);
+    
     MSG msg = {};
-    while (msg.message != WM_QUIT) {
-        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-        else {
-            
-            RenderFrame();
-            Sound();
-        }
+    while (windowIsRunning(msg))
+    {
+        getInput();
+        //Physics
+        //Logic
+        update();        
+        render();
+        Sound();
     }
 
     Cleanup();
     return msg.wParam;
 }
-
-LPDIRECT3DDEVICE9 GetDevice(void)
-{
-    return d3ddev;
-}
-

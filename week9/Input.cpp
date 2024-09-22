@@ -89,7 +89,8 @@ void UpadateKeyboard(void)
 	BYTE aKeyState[256];
 
 
-	if (SUCCEEDED(g_pDevKeyboard->GetDeviceState(sizeof(aKeyState), &aKeyState[0])))
+	if (SUCCEEDED(g_pDevKeyboard->
+		State(sizeof(aKeyState), &aKeyState[0])))
 	{
 		for (cnt = 0;cnt < 256;cnt++)
 		{
