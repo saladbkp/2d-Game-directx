@@ -13,7 +13,6 @@
 #include "Polygon.h"
 #include "Cactus.h"
 #include <dinput.h>
-#include "Input.h"
 #include "FrameTimer.h"
 #include <string>
 #include "background.h"
@@ -24,6 +23,7 @@
 #include "resource.h"
 #include "GameStateManager.h"
 #include <iostream>
+#include "DirectInputHandler.h"
 
 HWND hWnd;
 
@@ -35,16 +35,6 @@ LPDIRECT3DDEVICE9 d3ddev;
 // Global variables
 LPD3DXFONT g_pFont = nullptr;
 FrameTimer g_frameTimer;
-
-//// Game states
-//enum GameState {
-//    SPLASH,
-//    MAINMENU,
-//    SETTINGSMENU,
-//    GAME,
-//    GAMEOVER
-//};
-//GameState gameState = SPLASH;
 
 // Handle gmae logic if player loses a round
 bool roundLost = false;
@@ -108,12 +98,6 @@ std::uniform_int_distribution<int> _x(10, gfx.ScreenWidth - 10 - 200);
 std::uniform_int_distribution<int> _vy(-3, 3);
 std::uniform_int_distribution<int> _ysize(30, maxObjectHeight - 30);
 
-// background
-ScrollingBackground* bg = nullptr;
-
-LPDIRECT3DTEXTURE9 pauseTexture = nullptr; // Global or class member variable
-LPD3DXSPRITE spritepauseHandler = nullptr;
-
 //Initialize sound
 AudioManager* audioManager = new AudioManager();
 bool isBounced = false;
@@ -126,28 +110,11 @@ bool isUIClicked = false;
 SettingsManager* settingsManager = new SettingsManager();
 
 // Instances for screens
-SplashScreen splashScreen;
-SplashScreen gameOverScreen;
-MainMenu mainMenu;
 SettingsMenu settingsMenu(audioManager, settingsManager);
 
 //	Direct Input object.
-LPDIRECTINPUT8 dInput;
-//	Direct Input keyboard device.
-LPDIRECTINPUTDEVICE8  dInputKeyboardDevice;
-LPDIRECTINPUTDEVICE8 dInputMouseDevice;
-//	Key input buffer
-BYTE  diKeys[256];
+DirectInputHandler inputHandler;
 
-// This is required to hold the state of the mouse
-// This variable holds the current state of the mouse device
-DIMOUSESTATE mouseState;
-// This variable holds the current X position of the sprite
-LONG currentXpos = 320;
-// This variable holds the current Y position of the sprite
-LONG currentYpos = 240;
-LPD3DXFONT mouseFont = NULL;
-RECT mouseFontRect;
 
 // helper function
 // Custom max function
@@ -251,14 +218,7 @@ void createFont() {
     }
 }
 
-void createSprite() {
-    // Initialize sprite for the pause screen
-    HRESULT hr = D3DXCreateTextureFromFile(d3ddev, "Assets\\pandaerror.png", &pauseTexture);
-    if (FAILED(hr)) {
-        MessageBox(NULL, "Could not load pause.png", "Error", MB_OK);
-    }
-    D3DXCreateSprite(d3ddev, &spritepauseHandler);
-}
+
 
 void createLine() {
     // Initialize lines or custom shapes if needed
@@ -272,13 +232,10 @@ void initializeComponents() {
     g_frameTimer.init(60); // 60 FPS
 
     // Initialize background
-    bg = new ScrollingBackground(d3ddev);
-    bg->Init(d3ddev, ".\\Assets\\bgBamboo_01.png", ".\\Assets\\bgBamboo_02.png", ".\\Assets\\bgBamboo_03.png", 800, 600);
+    //bg = new ScrollingBackground(d3ddev);
+    //bg->Init(d3ddev, ".\\Assets\\bgBamboo_01.png", ".\\Assets\\bgBamboo_02.png", ".\\Assets\\bgBamboo_03.png", 800, 600);
 
     // Initialize screens
-    splashScreen.Init(d3ddev, L"Assets\\loading.png");
-    gameOverScreen.Init(d3ddev, L"Assets\\gameover.png");
-    mainMenu.Init(d3ddev);
     settingsMenu.Init(d3ddev);
 
     // Initialize player, obstacles, and other game components
@@ -324,70 +281,7 @@ bool windowIsRunning(MSG msg) {
     }
     return true;
 }
-int createDirectInput() {
 
-    //	Create the Direct Input object.
-    HRESULT hr = DirectInput8Create(GetModuleHandle(NULL), 0x0800, IID_IDirectInput8, (void**)&dInput, NULL);
-    if (FAILED(hr))
-    {
-        //cout << "DirectInput8Create Fail" << endl;
-        return 0;
-    }
-
-    //	Create the keyboard device.
-    hr = dInput->CreateDevice(GUID_SysKeyboard, &dInputKeyboardDevice, NULL);
-    if (FAILED(hr))
-    {
-        //cout << "CreateDevice dInputKeyboardDevice Fail" << endl;
-        return 0;
-    }
-
-    dInputKeyboardDevice->SetDataFormat(&c_dfDIKeyboard);
-
-    dInputKeyboardDevice->SetCooperativeLevel(/*HWND*/hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
-
-    hr = dInput->CreateDevice(GUID_SysMouse, &dInputMouseDevice, NULL);
-    if (FAILED(hr))
-    {
-        //cout << "CreateDevice dInputMouseDevice Fail" << endl;
-        return 0;
-    }
-
-    hr = dInputMouseDevice->SetDataFormat(&c_dfDIMouse);
-    if (FAILED(hr))
-    {
-        //cout << "dInputMouseDevice SetDataFormat Fail" << endl;
-        return 0;
-    }
-
-    dInputMouseDevice->SetCooperativeLevel(/*HWND*/hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
-
-    //ShowCursor(FALSE);
-}
-
-void getInput() {
-    dInputKeyboardDevice->Acquire();
-    dInputKeyboardDevice->GetDeviceState(256, diKeys);
-
-    dInputMouseDevice->Acquire();
-    dInputMouseDevice->GetDeviceState(sizeof(mouseState), &mouseState);
-}
-
-void cleanupDirectInput() {
-    //	Release keyboard device.
-    dInputKeyboardDevice->Unacquire();
-    dInputKeyboardDevice->Release();
-    dInputKeyboardDevice = NULL;
-
-    //	Release mouse device.
-    dInputMouseDevice->Unacquire();
-    dInputMouseDevice->Release();
-    dInputMouseDevice = NULL;
-
-    //	Release DirectInput.
-    dInput->Release();
-    dInput = NULL;
-}
 
 #pragma endregion
 
@@ -459,6 +353,9 @@ bool paddleHit()
         b.y - b.diameter / 2 < p.y + p.size / 2 &&
         b.y + b.diameter / 2 > p.y - p.size / 2);
 }
+
+
+
 #pragma endregion
 
 #pragma region render component
@@ -516,27 +413,6 @@ void RenderScore() {
         g_pFont->DrawText(NULL, scoreText, -1, &textRect, DT_LEFT | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
         g_pFont->DrawText(NULL, highscoreText, -1, &textRect2, DT_LEFT | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
     }
-    if (g_pFontScore) {
-        // Define the text with the ❤️ emoji
-        char scoreText[256];
-        const char* heartText = "";
-
-        // Define the rectangle where the text will be rendered
-        RECT textRect = { 800, 10, 1000, 50 }; // Adjust as needed
-
-        // Set the font color (white in this case)
-        D3DCOLOR textColor = D3DCOLOR_XRGB(255, 255, 255);
-
-        // Render the text including the emoji
-        g_pFont->DrawText(
-            NULL,                        // No specific render target
-            heartText,                   // The text to render
-            -1,                          // -1 to indicate the text is null-terminated
-            &textRect,                   // Rectangle defining the text area
-            DT_LEFT | DT_NOCLIP,         // Text alignment and clipping options
-            textColor                    // Text color
-        );
-    }
 
 }
 
@@ -558,7 +434,12 @@ void ComposeFrame() {
     // Draw cactus
     DrawCactus(d3ddev);
 }
+
+
+
 #pragma endregion
+
+
 
 void Sound() {
     if (isBounced) {
@@ -579,18 +460,39 @@ void Sound() {
     //}
 }
 
+void updateSystem() {
+    // Handle input for sliders and close button
+    settingsMenu.HandleInput(mousePos, isClick);
+
+    // If volume adjusted or settings closed, transition back to the main menu
+    if (settingsMenu.IsVolumeAdjusted()) {
+        settingsMenu.Reset();
+        isUIClicked = true;
+    }
+    if (settingsMenu.IsCloseClicked()) {
+        // back to main menu
+        gameStateManager.SetCurrentState(2);
+        settingsMenu.Reset();
+        isUIClicked = true;
+    }
+}
+
+void renderSystem() {
+    settingsMenu.Render(d3ddev);
+}
+
 void update() {
 
-    if (diKeys[DIK_UP] & 0x80) {
+    if (inputHandler.isKeyPressed(DIK_UP)) {
         p.y -= p.speed + 5;
     }
 
-    if (diKeys[DIK_DOWN] & 0x80) {
+    if (inputHandler.isKeyPressed(DIK_DOWN)) {
 
         p.y += p.speed + 5;
     }
     
-    if (diKeys[DIK_SPACE] & 0x80) {
+    if (inputHandler.isKeyPressed(DIK_SPACE)) {
         
         if (!b.inMotion)
         {
@@ -744,6 +646,9 @@ void update() {
             cactus->pos = D3DXVECTOR3(SCREEN_WIDTH + cactus->fWidth / 2, SCREEN_HEIGHT - cactus->fHeight / 2, 0.0f);
         }
     }
+    updateSystem();
+
+    gameStateManager.Update(d3ddev, mousePos, isClick, isUIClicked, &score, &chance, &isPaused);
 }
 
 void render() {
@@ -753,12 +658,17 @@ void render() {
     // render here
     RenderFPS();
     RenderScore();
-
-    // Update the game state
-    gameStateManager.Update(d3ddev, mousePos, isClick, isUIClicked, &score,&chance,bg,&isPaused, spritepauseHandler, pauseTexture);
     
+    // Update the game state
+    //gameStateManager.Update(d3ddev, mousePos, isClick, isUIClicked, &score,&chance,bg,&isPaused, spritepauseHandler, pauseTexture);
+    gameStateManager.Render(d3ddev);
+    // game mode
     if (gameStateManager.GetCurrentState() == 3) {
         ComposeFrame();
+    }
+    // system mode
+    else if (gameStateManager.GetCurrentState() == 6) {
+        renderSystem();
     }
     
     d3ddev->EndScene();
@@ -768,8 +678,6 @@ void render() {
 }
 
 void Cleanup() {
-    splashScreen.Cleanup();
-    mainMenu.Cleanup();
     audioManager->Cleanup();
     settingsMenu.Cleanup();
     d3ddev->Release();
@@ -777,15 +685,6 @@ void Cleanup() {
     g_pFont->Release();
     g_pFontScore->Release();
     
-    // Release textures and sprites
-    if (pauseTexture) {
-        pauseTexture->Release();
-        pauseTexture = nullptr;
-    }
-    if (spritepauseHandler) {
-        spritepauseHandler->Release();
-        spritepauseHandler = nullptr;
-    }
 
     if (o) {
         delete[] o;
@@ -795,36 +694,31 @@ void Cleanup() {
         delete[] o2;
         o2 = nullptr;
     }
-    if (bg) {
-        delete bg;
-        bg = nullptr;
-    }
 
     UninitPolygon();
-    cleanupDirectInput();
+    // Get input
+    inputHandler.cleanup();
+    gameStateManager.CleanUp();
 }
 
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
     // Initialize audio manager
-    audioManager->InitializeAudio();
-    audioManager->LoadSound();
-    audioManager->PlaySoundTrack(settingsManager);
 
     createWindow(hInstance, nCmdShow);
     createDirect3D9(hWnd);
     createFont();
-    createSprite();
     createLine();
-    createDirectInput();
+    // Get input
+    inputHandler.initialize(hInstance,hWnd);
     initializeComponents();
-    gameStateManager.Init(d3ddev,audioManager,settingsManager);
+    gameStateManager.Init(d3ddev);
     
     MSG msg = {};
     while (windowIsRunning(msg))
     {
-        getInput();
+        inputHandler.getInput();
         //Physics
         //Logic
         update();        

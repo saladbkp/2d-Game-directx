@@ -8,6 +8,8 @@
 class ScrollingBackground
 {
 public:
+    // Default constructor
+    ScrollingBackground();
     // Constructor and Destructor
     ScrollingBackground(LPDIRECT3DDEVICE9 d3ddev);
     ~ScrollingBackground();
@@ -21,7 +23,10 @@ public:
     // Render function to draw all layers
     void Render(LPDIRECT3DDEVICE9 d3ddev);
 
+    void Cleanup();
+
 private:
+
     // Sprite handler for rendering
     LPD3DXSPRITE sprite_handler;
 
@@ -44,6 +49,8 @@ private:
     int offsetX2; // Middle layer
     int offsetX3; // Closest layer
 
+
+
     // Helper function to load a texture
     void LoadTexture(LPDIRECT3DDEVICE9 d3ddev, const std::string& texturePath, LPDIRECT3DTEXTURE9& texture, int& width, int& height);
 
@@ -55,6 +62,6 @@ private:
 };
 
 // Function to handle player movement
-void HandlePlayerMovement(ScrollingBackground& background);
+void HandlePlayerMovement(ScrollingBackground *background);
 
 #endif

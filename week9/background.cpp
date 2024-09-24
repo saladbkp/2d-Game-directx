@@ -1,6 +1,12 @@
 #include "background.h"
 #include <stdexcept>
 
+// Default constructor
+ScrollingBackground::ScrollingBackground()
+    : offsetX1(0), offsetX2(0), offsetX3(0), screenWidth(800), screenHeight(600)
+{
+    sprite_handler = nullptr;
+}
 // Constructor to initialize variables
 ScrollingBackground::ScrollingBackground(LPDIRECT3DDEVICE9 d3ddev)
     : offsetX1(0), offsetX2(0), offsetX3(0), screenWidth(800), screenHeight(600)
@@ -13,6 +19,14 @@ ScrollingBackground::ScrollingBackground(LPDIRECT3DDEVICE9 d3ddev)
 
 // Destructor
 ScrollingBackground::~ScrollingBackground()
+{
+    // (back_image1) back_image1->Release();
+    //if (back_image2) back_image2->Release();
+    //if (back_image3) back_image3->Release();
+    //if (sprite_handler) sprite_handler->Release();
+}
+
+void ScrollingBackground::Cleanup()
 {
     if (back_image1) back_image1->Release();
     if (back_image2) back_image2->Release();
@@ -27,12 +41,23 @@ void ScrollingBackground::Init(LPDIRECT3DDEVICE9 d3ddev, const std::string& text
     this->screenHeight = screenHeight;
 
     // Initialize the sprite handler
-    D3DXCreateSprite(d3ddev, &sprite_handler);
+    HRESULT hr = D3DXCreateSprite(d3ddev, &sprite_handler);
+    //if (FAILED(hr)) {
+    //    MessageBox(NULL, "Failed to create sprite handler!", "Error", MB_OK);
+    //    sprite_handler = nullptr;
+    //    return;  // If failed, stop further execution
+    //}
 
     // Load all 3 background layers as textures
-    LoadTexture(d3ddev, texturePath1, back_image1, textureWidth1, textureHeight1);
-    LoadTexture(d3ddev, texturePath2, back_image2, textureWidth2, textureHeight2);
-    LoadTexture(d3ddev, texturePath3, back_image3, textureWidth3, textureHeight3);
+    try {
+        LoadTexture(d3ddev, texturePath1, back_image1, textureWidth1, textureHeight1);
+        LoadTexture(d3ddev, texturePath2, back_image2, textureWidth2, textureHeight2);
+        LoadTexture(d3ddev, texturePath3, back_image3, textureWidth3, textureHeight3);
+    }
+    catch (const std::runtime_error& e) {
+        MessageBox(NULL, e.what(), "Error", MB_OK);
+        return;  // Handle texture loading failures
+    }
 }
 
 // Helper function to load a texture
@@ -84,19 +109,21 @@ void ScrollingBackground::WrapOffset(int& offsetX, int textureWidth)
 // Render function: draws all 3 background layers
 void ScrollingBackground::Render(LPDIRECT3DDEVICE9 d3ddev)
 {
-    sprite_handler->Begin(D3DXSPRITE_ALPHABLEND);
+    if (sprite_handler) {
+        sprite_handler->Begin(D3DXSPRITE_ALPHABLEND);
 
-    // Render the 3 layers with independent offsets, using two tiles for each layer
-    DrawTile(-offsetX1, 0, d3ddev, back_image1, textureWidth1, textureHeight1); // Farthest layer
-    DrawTile(textureWidth1 - offsetX1, 0, d3ddev, back_image1, textureWidth1, textureHeight1); // Seamless tile
+        // Render the 3 layers with independent offsets, using two tiles for each layer
+        DrawTile(-offsetX1, 0, d3ddev, back_image1, textureWidth1, textureHeight1); // Farthest layer
+        DrawTile(textureWidth1 - offsetX1, 0, d3ddev, back_image1, textureWidth1, textureHeight1); // Seamless tile
 
-    DrawTile(-offsetX2, 0, d3ddev, back_image2, textureWidth2, textureHeight2); // Middle layer
-    DrawTile(textureWidth2 - offsetX2, 0, d3ddev, back_image2, textureWidth2, textureHeight2); // Seamless tile
+        DrawTile(-offsetX2, 0, d3ddev, back_image2, textureWidth2, textureHeight2); // Middle layer
+        DrawTile(textureWidth2 - offsetX2, 0, d3ddev, back_image2, textureWidth2, textureHeight2); // Seamless tile
 
-    DrawTile(-offsetX3, 0, d3ddev, back_image3, textureWidth3, textureHeight3); // Closest layer
-    DrawTile(textureWidth3 - offsetX3, 0, d3ddev, back_image3, textureWidth3, textureHeight3); // Seamless tile
+        DrawTile(-offsetX3, 0, d3ddev, back_image3, textureWidth3, textureHeight3); // Closest layer
+        DrawTile(textureWidth3 - offsetX3, 0, d3ddev, back_image3, textureWidth3, textureHeight3); // Seamless tile
 
-    sprite_handler->End();
+        sprite_handler->End();
+    }    
 }
 
 // Helper function for drawing a single tile of a background layer
@@ -118,7 +145,7 @@ void ScrollingBackground::DrawTile(int x, int y, LPDIRECT3DDEVICE9 d3ddev, LPDIR
 }
 
 // Code to handle player input (A and D keys)
-void HandlePlayerMovement(ScrollingBackground& background)
+void HandlePlayerMovement(ScrollingBackground *background)
 {
     float deltaX = 0.0f;
 
@@ -133,5 +160,5 @@ void HandlePlayerMovement(ScrollingBackground& background)
     }
 
     // Update the background based on the player's movement
-    background.Update(deltaX);
+    background->Update(deltaX);
 }

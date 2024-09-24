@@ -1,12 +1,12 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (week9.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Game.cpp
   main.cpp
   C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(301,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(301,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(521,14): warning C4101: 'scoreText': unreferenced local variable
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(545,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(545,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(585,24): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(590,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Asus\Desktop\2d-Game-directx-main\week9\main.cpp(366,1): warning C4715: 'createDirectInput': not all control paths return a value
-  week9.vcxproj -> C:\Users\Asus\Desktop\2d-Game-directx-main\Debug\logo.exe
+C:\Users\Asus\Desktop\2d-Game-directx\week9\main.cpp(258,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Asus\Desktop\2d-Game-directx\week9\main.cpp(258,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Asus\Desktop\2d-Game-directx\week9\main.cpp(421,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Asus\Desktop\2d-Game-directx\week9\main.cpp(421,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Asus\Desktop\2d-Game-directx\week9\main.cpp(487,24): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Asus\Desktop\2d-Game-directx\week9\main.cpp(492,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  week9.vcxproj -> C:\Users\Asus\Desktop\2d-Game-directx\Debug\logo.exe

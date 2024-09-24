@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -138,9 +138,11 @@
     <ClCompile Include="background.cpp" />
     <ClCompile Include="Cactus.cpp" />
     <ClCompile Include="CustomShapes.cpp" />
+    <ClCompile Include="DirectInputHandler.cpp" />
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="FileName2.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Leaf.cpp" />
@@ -148,6 +150,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="SettingsManager.cpp" />
     <ClCompile Include="SettingsMenu.cpp" />
@@ -159,13 +162,16 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Cactus.h" />
     <ClInclude Include="CustomShapes.h" />
+    <ClInclude Include="DirectInputHandler.h" />
     <ClInclude Include="FrameTimer.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Leaf.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Paddle.h" />
+    <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SettingsManager.h" />

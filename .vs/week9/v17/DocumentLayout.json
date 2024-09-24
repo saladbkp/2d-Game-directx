@@ -1,38 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\",
+  "WorkspaceRootPath": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\Polygon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Polygon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\GameStateManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\GameStateManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\background.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\background.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\GameStateManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\GameStateManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\GameStateManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\MainMenu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\MainMenu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\GameStateManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\GameStateManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\MainMenu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\MainMenu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\DirectInputHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\DirectInputHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\DirectInputHandler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\DirectInputHandler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF6129A0-E89C-4066-BD8E-BFC3C6E902A1}|week9\\week9.vcxproj|solutionrelative:week9\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,117 +41,112 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 379,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 682,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "GameStateManager.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\GameStateManager.cpp",
-              "RelativeDocumentMoniker": "week9\\GameStateManager.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\GameStateManager.cpp",
-              "RelativeToolTip": "week9\\GameStateManager.cpp",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAuwIgAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-22T05:42:59.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GameStateManager.h",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\GameStateManager.h",
-              "RelativeDocumentMoniker": "week9\\GameStateManager.h",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\GameStateManager.h",
-              "RelativeToolTip": "week9\\GameStateManager.h",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Game.h",
+              "RelativeDocumentMoniker": "week9\\Game.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Game.h",
+              "RelativeToolTip": "week9\\Game.h",
+              "ViewState": "AgIAACsAAAAAAAAAAAAUwEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-22T05:42:44.924Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FileName.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\FileName.cpp",
-              "RelativeDocumentMoniker": "week9\\FileName.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\FileName.cpp",
-              "RelativeToolTip": "week9\\FileName.cpp",
-              "ViewState": "AgIAAHABAAAAAAAAAAAuwHwBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-22T05:26:33.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MainMenu.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\MainMenu.cpp",
-              "RelativeDocumentMoniker": "week9\\MainMenu.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\MainMenu.cpp",
-              "RelativeToolTip": "week9\\MainMenu.cpp",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-21T16:27:30.708Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainMenu.h",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\MainMenu.h",
-              "RelativeDocumentMoniker": "week9\\MainMenu.h",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\MainMenu.h",
-              "RelativeToolTip": "week9\\MainMenu.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-21T16:27:23.617Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 447,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "background.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\background.cpp",
-              "RelativeDocumentMoniker": "week9\\background.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\background.cpp",
-              "RelativeToolTip": "week9\\background.cpp",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAAAIEAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-22T11:49:09.414Z",
+              "WhenOpened": "2024-09-24T03:42:45.636Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Polygon.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\Polygon.cpp",
-              "RelativeDocumentMoniker": "week9\\Polygon.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\Polygon.cpp",
-              "RelativeToolTip": "week9\\Polygon.cpp",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAAwHQAAABhAAAAAAAAAA==",
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Game.cpp",
+              "RelativeDocumentMoniker": "week9\\Game.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\Game.cpp",
+              "RelativeToolTip": "week9\\Game.cpp",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAUwHAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-22T11:40:16.05Z",
+              "WhenOpened": "2024-09-24T02:15:16.127Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DirectInputHandler.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\DirectInputHandler.cpp",
+              "RelativeDocumentMoniker": "week9\\DirectInputHandler.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\DirectInputHandler.cpp",
+              "RelativeToolTip": "week9\\DirectInputHandler.cpp",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAADsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-24T00:02:33.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DirectInputHandler.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\DirectInputHandler.h",
+              "RelativeDocumentMoniker": "week9\\DirectInputHandler.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\DirectInputHandler.h",
+              "RelativeToolTip": "week9\\DirectInputHandler.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAQwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-24T00:01:58.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameStateManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\GameStateManager.cpp",
+              "RelativeDocumentMoniker": "week9\\GameStateManager.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\GameStateManager.cpp",
+              "RelativeToolTip": "week9\\GameStateManager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-22T05:42:59.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameStateManager.h",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\GameStateManager.h",
+              "RelativeDocumentMoniker": "week9\\GameStateManager.h",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\GameStateManager.h",
+              "RelativeToolTip": "week9\\GameStateManager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-22T05:42:44.924Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FileName.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp",
+              "RelativeDocumentMoniker": "week9\\FileName.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\FileName.cpp",
+              "RelativeToolTip": "week9\\FileName.cpp",
+              "ViewState": "AgIAAHABAAAAAAAAAAAuwHwBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-22T05:26:33.564Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 768,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\main.cpp",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\main.cpp",
               "RelativeDocumentMoniker": "week9\\main.cpp",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx-main\\week9\\main.cpp",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\2d-Game-directx\\week9\\main.cpp",
               "RelativeToolTip": "week9\\main.cpp",
-              "ViewState": "AgIAAD8CAAAAAAAAAAAAwEoCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-21T15:56:51.483Z",
+              "WhenOpened": "2024-09-23T12:43:37.617Z",
               "EditorCaption": ""
             }
           ]

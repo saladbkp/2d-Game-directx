@@ -2,7 +2,6 @@
 #include "Graphics.h"
 #include <d3dx9.h>
 #include <dinput.h>
-#include "Input.h"
 #include <cmath>
 
 #pragma comment(lib, "d3d9.lib")

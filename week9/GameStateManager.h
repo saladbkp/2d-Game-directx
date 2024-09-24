@@ -6,6 +6,7 @@
 #include "SettingsMenu.h"
 #include "background.h"
 #include <d3d9.h>
+#include "PauseScreen.h"
 
 class GameStateManager {
 public:
@@ -16,26 +17,28 @@ public:
     static const int PAUSE = 4;
     static const int GAMEOVER = 5;
     static const int SETTINGS = 6;
-
     // Constructor
     GameStateManager();
 
     // Initialize all screens
-    void Init(LPDIRECT3DDEVICE9 d3ddev, AudioManager* audioManager, SettingsManager* settingsManager);
+    void Init(LPDIRECT3DDEVICE9 d3ddev);
 
     // Update based on current state
-    void Update(LPDIRECT3DDEVICE9 d3ddev, POINT mousePos, bool isClick, bool isUIClicked,int* score, int* chance, ScrollingBackground* bg, bool* isPaused, LPD3DXSPRITE spritepauseHandler, LPDIRECT3DTEXTURE9 pauseTexture);
+    void Update(LPDIRECT3DDEVICE9 d3ddev, POINT mousePos, bool isClick, bool isUIClicked,int* score, int* chance, bool* isPaused);
 
     // Render based on current state
     void Render(LPDIRECT3DDEVICE9 d3ddev);
     int GetCurrentState() const;
+    void SetCurrentState(int state);
+    void CleanUp();
 
 private:
     int currentState;  // Current state of the game
     SplashScreen splashScreen;
     SplashScreen gameOverScreen;
     MainMenu mainMenu;
-    SettingsMenu settingsMenu;
+    ScrollingBackground scollingBg;  // Background pointer
+    PauseScreen pauseScreen;
 };
 
 #endif // GAMESTATEMANAGER_H

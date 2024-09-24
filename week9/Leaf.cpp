@@ -1,7 +1,6 @@
 #include "Leaf.h"
 #include "Graphics.h"
 #include <cmath>
-#include "Input.h"
 #include "Polygon.h"
 #include <ctime> // For random number generation
 

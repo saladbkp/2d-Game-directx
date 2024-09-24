@@ -1,7 +1,6 @@
 #include "Cactus.h"
 #include "Graphics.h"
 #include <cmath>
-#include "Input.h"
 #include "Polygon.h"
 
 #pragma comment(lib, "d3d9.lib")

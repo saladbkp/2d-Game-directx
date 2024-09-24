@@ -58,6 +58,15 @@
     <ClCompile Include="GameStateManager.cpp">
       <Filter>GameState</Filter>
     </ClCompile>
+    <ClCompile Include="PauseScreen.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectInputHandler.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -77,6 +86,9 @@
     </Filter>
     <Filter Include="GameState">
       <UniqueIdentifier>{e325365d-1457-4f02-9ce0-6543d453f82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{654d1e57-5641-483e-94b5-dac9afd8951e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +140,15 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="GameStateManager.h">
       <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectInputHandler.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
